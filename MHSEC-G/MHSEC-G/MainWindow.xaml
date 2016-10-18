@@ -15,10 +15,10 @@
                     <Label x:Name="label_money" Content="Money" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_leve" Content="Level" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_exp" Content="Exp" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="61,14,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="61,44,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="61,74,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="61,104,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="61,14,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding model.character.char_name}"/>
+                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="61,44,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding model.character.char_money}"/>
+                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="61,74,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding model.character.char_level}"/>
+                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="61,104,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding model.character.char_exp}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Monsters">
