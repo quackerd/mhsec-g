@@ -7,7 +7,7 @@ namespace MHSEC_G
     public class Character : INotifyPropertyChanged
     {
         private const uint OFFSETA_CHAR_NAME = 0x9DA0;
-        private const uint LENGTH_CHAR_NAME = 4;
+        private const uint LENGTH_CHAR_NAME = 6;
         private const uint OFFSETA_CHAR_MONEY = 0x5B404;
         private const uint OFFSETA_CHAR_EXP = 0x9E68;
         private const uint OFFSETA_CHAR_LEVEL = 0x9E64;
@@ -70,12 +70,12 @@ namespace MHSEC_G
 
         public string name
         {
-            get { return Model.read_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, 65536); }
+            get { return Model.read_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, LENGTH_CHAR_NAME); }
             set
             {
                 if (value.Length <= LENGTH_CHAR_NAME && value.Length > 0)
                 {
-                    Model.write_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, value, LENGTH_CHAR_NAME + 1);
+                    Model.write_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, value, LENGTH_CHAR_NAME);
                 }
                 else
                 {
