@@ -12,7 +12,7 @@ namespace MHSEC_G
     {
         private ViewModel view_model;
         private readonly byte[] dummy_data = new byte[Model.SAVE_FILE_SIZE];
-        private const string Version = "0.1";
+        private const string Version = "0.11";
         public MainWindow()
         {
             InitializeComponent();
@@ -35,10 +35,10 @@ namespace MHSEC_G
                 if (buffer.Length != Model.SAVE_FILE_SIZE)
                 {
                     System.Windows.Forms.MessageBox.Show(
-                        "Wrong save file size! Expected: " + Model.SAVE_FILE_SIZE + ".",
+                        "Wrong save file size! Expected: " + Model.SAVE_FILE_SIZE + " Got: " + buffer.Length,
                         "Error",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Asterisk);
+                        MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace MHSEC_G
             List<Item> items = view_model.items;
             for (uint i = 0; i < items.Count; i++)
             {
-                if (items.ElementAt((int)i).id == 1227)
+                if (items.ElementAt((int)i).offset >= Item.OFFSETA_FIRST_KEY_ITEM)
                     break;
 
                 items.ElementAt((int)i).count = 986;
@@ -76,7 +76,7 @@ namespace MHSEC_G
             List<Item> items = view_model.items;
             for (uint i = 0; i < items.Count; i++)
             {
-                if (items.ElementAt((int) i).id == 1227)
+                if (items.ElementAt((int)i).offset >= Item.OFFSETA_FIRST_KEY_ITEM)
                     break;
 
                 if (items.ElementAt((int)i).count != 0)

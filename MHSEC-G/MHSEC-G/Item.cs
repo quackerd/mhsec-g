@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using MHSEC_G.Annotations;
@@ -14,12 +15,18 @@ namespace MHSEC_G
         private static readonly uint OFFSETR_ITEM_ID = 0x0;
         private static readonly uint OFFSETR_ITEM_COUNT = 0x2;
         private static readonly uint OFFSETA_ITEM_BOX_END = 0x2EE7;
+        public static readonly uint OFFSETA_FIRST_KEY_ITEM = 0x17B0;
 
         private static readonly string ID_MAPPING_FILE_NAME = "idmap.txt";
         private static readonly Dictionary<uint, uint> OFFSET_ID_MAPPING = new Dictionary<uint, uint>();
         private static readonly Dictionary<uint, string> OFFSET_NAME_MAPPING = new Dictionary<uint, string>();
 
         private readonly uint _offset;
+
+        public uint offset
+        {
+            get { return _offset; }
+        }
         private readonly Model _model;
 
         public string name
@@ -91,7 +98,9 @@ namespace MHSEC_G
                     {
                         if (item_id != OFFSET_ID_MAPPING[offset])
                         {
-                            throw new SystemException("Item offset and ID do not correspond.");
+                            // correct to the correct id
+                            // BugCheck.bug_check(BugCheck.ErrorCode.ITEM_NO_CORRESPONDENCE, "Item offset " + offset.ToString("X") + " and item ID " + item_id.ToString("X") + " do not correspond.");
+                            Model.write_uint16_le(model.save_file, offset + OFFSETR_ITEM_ID, OFFSET_ID_MAPPING[offset]);
                         }
                     }
                 }
@@ -104,7 +113,15 @@ namespace MHSEC_G
         public static void read_item_mappings()
         {
             string line;
-            System.IO.StreamReader file = new System.IO.StreamReader(ID_MAPPING_FILE_NAME);
+            System.IO.StreamReader file = null;
+
+            if (!File.Exists(ID_MAPPING_FILE_NAME))
+            {
+                BugCheck.bug_check(BugCheck.ErrorCode.ITEM_MAPPING_DNE,
+                    "Cannot find mapping file " + ID_MAPPING_FILE_NAME);
+            }
+
+            file = new System.IO.StreamReader(ID_MAPPING_FILE_NAME);
             while ((line = file.ReadLine()) != null)
             {
                 if (line.Length == 0)
@@ -112,7 +129,9 @@ namespace MHSEC_G
 
                 string[] eachline = line.Split('\t');
                 if (eachline.Length != 3)
-                    throw new SystemException("Item mapping file is corrupted.");
+                {
+                    BugCheck.bug_check(BugCheck.ErrorCode.ITEM_MAPPING_CORRUPTED, "Invalid mapping file line:\n" + line);
+                }
 
                 OFFSET_ID_MAPPING.Add(UInt32.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), UInt32.Parse(eachline[1], System.Globalization.NumberStyles.HexNumber));
                 OFFSET_NAME_MAPPING.Add(UInt32.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), eachline[2]);

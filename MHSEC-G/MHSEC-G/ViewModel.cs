@@ -57,11 +57,10 @@ namespace MHSEC_G
 
         public ViewModel(byte[] save)
         {
-            if (save == null || save.Length != Model.SAVE_FILE_SIZE)
+            if (save == null)
             {
-                throw new SystemException("Invalid save file size.");
+                BugCheck.bug_check(BugCheck.ErrorCode.VIEWMODEL_NULL_SAVE, "The save file reference is NULL.");
             }
-
             _model = new Model(save);
             _character = new Character(_model);
             _items = Item.read_all_items(_model);
