@@ -10,15 +10,5 @@ namespace MHSEC_G
 {
     public partial class App : Application
     {
-        private Model model;
-        public Model get_model()
-        {
-            return model;
-        }
-
-        public void set_model(Model model)
-        {
-
-        }
     }
 }

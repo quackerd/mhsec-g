@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
@@ -13,42 +8,33 @@ namespace MHSEC_G
     {
         public const uint SAVE_FILE_SIZE = 483976;
 
-        private readonly byte[] save_file;
+        private readonly byte[] _save_file;
 
-        private readonly Character _character;
-        public Character character
+        public byte[] save_file
         {
-            get { return _character; }
+            get { return _save_file; }
         }
 
-        private uint cur_monster_selection;
-        private readonly List<Monster> monsters;
-
-        private readonly List<Item> items;
-
-        private uint cur_egg_fragment_selection;
-        private readonly List<EggFragment> egg_fragments;
- 
-        public Model(byte[] save)
+        public Model(byte[] save_file)
         {
-            if (save == null || save.Length != SAVE_FILE_SIZE)
-            {
+            if(save_file.Length != SAVE_FILE_SIZE)
                 throw new SystemException("Invalid save file size.");
-            }
-            save_file = save;
-            _character = new Character(save_file);
-
-            cur_monster_selection = 0;
-            monsters = null;
-            items = null;
-            cur_egg_fragment_selection = 0;
-            egg_fragments = null;
+            _save_file = save_file;
         }
-
 
         public static uint byte_to_uint(byte b)
         {
             return (uint) (b) & 0xFF;
+        }
+
+        public static void write_byte(byte[]arr, uint offset, uint val)
+        {
+            if(offset < arr.Length)
+                arr[offset] = (byte)(val&0xFF);
+            else
+            {
+                throw new SystemException("Buffer overflowed - Offset " + offset);
+            }
         }
 
         public static uint byte_to_uint16_le(byte[] arr, uint offset)
@@ -104,6 +90,38 @@ namespace MHSEC_G
                 }
             }
             return name.ToString();
+        }
+
+        public static void write_unicode_string(byte[] arr, uint offset, string str, uint length)
+        {
+            if (length < str.Length || arr.Length < offset + length)
+                throw new SystemException("Unicode string write - potential buffer overflow.");
+
+            Array.Clear(arr, (int) offset, (int)length*2);
+            for (uint i = 0; i < str.Length; i ++)
+            {
+                write_uint16_le(arr, offset + i*2, str.ElementAt((int) i));
+            }
+            return;
+        }
+
+
+        public static bool parse_hex_string(string val, out uint result)
+        {
+            result = 0;
+            try
+            {
+                result = Convert.ToUInt32(val, 16);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

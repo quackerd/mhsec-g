@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using MHSEC_G.Annotations;
 
 namespace MHSEC_G
@@ -6,46 +7,88 @@ namespace MHSEC_G
     public class Character : INotifyPropertyChanged
     {
         private const uint OFFSETA_CHAR_NAME = 0x9DA0;
-        private const uint LENGTH_CHAR_NAME = 6;
+        private const uint LENGTH_CHAR_NAME = 5;
         private const uint OFFSETA_CHAR_MONEY = 0x5B404;
         private const uint OFFSETA_CHAR_EXP = 0x9E68;
         private const uint OFFSETA_CHAR_LEVEL = 0x9E64;
+        public const uint LIMIT_LEVEL = 99;
+        public const uint LIMIT_MONEY = 9999999;
+        public const uint LIMIT_EXP = 25165822;
 
-        private uint _char_level;
-        public uint char_level
+        private readonly Model _model;
+
+        public uint level
         {
-            get { return _char_level; }
-            set { _char_level = value; OnPropertyChanged(nameof(char_level)); }
+            get { return Model.byte_to_uint(_model.save_file[OFFSETA_CHAR_LEVEL]); }
+            set
+            {
+                if (value <= LIMIT_LEVEL)
+                {
+                    Model.write_byte(_model.save_file, OFFSETA_CHAR_LEVEL, value);
+                }
+                else
+                {
+                    MessageBox.Show("Level must be less than " + LIMIT_LEVEL, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(level));
+            }
         }
 
-        private uint _char_exp;
-        public uint char_exp
+        public uint exp
         {
-            get { return _char_exp; }
-            set { _char_exp = value; OnPropertyChanged(nameof(char_exp)); }
+            get { return Model.byte_to_uint32_le(_model.save_file, OFFSETA_CHAR_EXP); }
+            set
+            {
+                if (value <= LIMIT_EXP)
+                {
+                    Model.write_uint32_le(_model.save_file, OFFSETA_CHAR_EXP, value);
+                }
+                else
+                {
+                    MessageBox.Show("Exp must be less than " + LIMIT_EXP, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(exp));
+            }
         }
 
-        private uint _char_money;
-        public uint char_money
+        public uint money
         {
-            get { return _char_money; }
-            set { _char_money = value; OnPropertyChanged(nameof(char_money)); }
+            get { return Model.byte_to_uint32_le(_model.save_file, OFFSETA_CHAR_MONEY); }
+            set
+            {
+                if (value <= LIMIT_MONEY)
+                {
+                    Model.write_uint32_le(_model.save_file, OFFSETA_CHAR_MONEY, value);
+                }
+                else
+                {
+                    MessageBox.Show("Money must be less than " + LIMIT_MONEY, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(money));
+            }
         }
 
-        private string _char_name;
-        public string char_name
+        public string name
         {
-            get { return _char_name; }
-            set { _char_name = value; OnPropertyChanged(nameof(char_name)); }
+            get { return Model.read_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, LENGTH_CHAR_NAME); }
+            set
+            {
+                if (value.Length <= LENGTH_CHAR_NAME && value.Length > 0)
+                {
+                    Model.write_unicode_string(_model.save_file, OFFSETA_CHAR_NAME, value, LENGTH_CHAR_NAME);
+                }
+                else
+                {
+                    MessageBox.Show("Name must be 1-6 characters.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(name));
+            }
         }
 
 
-        public Character(byte[] save_data)
+        public Character(Model model)
         {
-            _char_level = Model.byte_to_uint(save_data[OFFSETA_CHAR_LEVEL]);
-            _char_exp = Model.byte_to_uint32_le(save_data, OFFSETA_CHAR_EXP);
-            _char_money = Model.byte_to_uint32_le(save_data, OFFSETA_CHAR_MONEY);
-            _char_name = Model.read_unicode_string(save_data, OFFSETA_CHAR_NAME, LENGTH_CHAR_NAME);
+            _model = model;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
