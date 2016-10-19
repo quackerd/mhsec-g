@@ -25,7 +25,35 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Egg Fragments">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="egg_frag_grid" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="271" Width="556" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=egg_fragments}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding spe}"
+                                Header="Species" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False"  Width ="60" Binding="{Binding pos}"
+                                Header="Position" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding new_flag}"
+                                Header="New?" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding rarity}"
+                                Header="Rarity" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding color}"
+                                Header="Color" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding dlc}"
+                                Header="DLC" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding unknown_7h}"
+                                Header="0x6" />
+                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="*" Binding="{Binding unknown_6h}"
+                                Header="0x7" />
+                            </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="button_give_dino" Content="Give Dinovaldo" HorizontalAlignment="Left" Margin="584,195,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_dino_Click"/>
+                    <Button x:Name="button_give_epony" Content="Give Epony" HorizontalAlignment="Left" Margin="584,35,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_epony_Click"/>
+                    <Button x:Name="button_give_bear" Content="Give Mascot" HorizontalAlignment="Left" Margin="584,75,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_bear_Click"/>
+                    <Button x:Name="button_give_mtiggy" IsEnabled="False" Content="Give Molten Tigrex" HorizontalAlignment="Left" Margin="584,115,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_mtiggy_Click"/>
+                    <Button x:Name="button_give_okirin" IsEnabled="False" Content="Give Oroshi Kirin" HorizontalAlignment="Left" Margin="584,155,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_okirin_Click"/>
+                    <TextBlock x:Name="textblock_egg_frag" HorizontalAlignment="Left" Margin="575,241,0,0" TextWrapping="Wrap" Text="Note: You can only give yourself one DLC monster at a time." VerticalAlignment="Top" RenderTransformOrigin="-0.182,-0.531" Width="125"/>
+                    <TextBlock x:Name="textblock_egg_frag_n" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="If interested, try giving yourself DLC eggs and modify each shard's DLC byte to 0x4 and up. You can get other DLC monsters!" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Items">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
@@ -101,5 +129,6 @@
         <Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Click="button_save_Click"/>
         <Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="74" Click="button_load_click"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="1046,415,-390,-95.5" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label_copy" Content="By secXsQuared" HorizontalAlignment="Left" Margin="642,7,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

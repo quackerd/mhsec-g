@@ -205,12 +205,12 @@ namespace MHSEC_G
 
         public string name
         {
-            get { return Model.read_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, LIMIT_MONSTER_NAME); }
+            get { return Model.read_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, 65536); }
             set
             {
                 if (value.Length <= 10 && value.Length > 0)
                 {
-                    Model.write_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, value, 10);
+                    Model.write_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, value, 11);
                 }
                 else
                 {

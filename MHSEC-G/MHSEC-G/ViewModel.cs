@@ -48,8 +48,12 @@ namespace MHSEC_G
             get { return _items; }
         }
 
-        private uint cur_egg_fragment_selection;
-        private readonly List<EggFragment> egg_fragments;
+        private readonly ObservableCollection<EggFragment> _egg_fragments;
+
+        public ObservableCollection<EggFragment>  egg_fragments
+        {
+            get { return _egg_fragments; }
+        }
 
         public ViewModel(byte[] save)
         {
@@ -63,9 +67,7 @@ namespace MHSEC_G
             _items = Item.read_all_items(_model);
             _monsters = new ObservableCollection<Monster>(Monster.read_all_monsters(_model));
             _cur_monster_selection = _monsters.ElementAt(0);
-
-            cur_egg_fragment_selection = 0;
-            egg_fragments = null;
+            _egg_fragments = EggFragment.read_all_egg_fragments(_model);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

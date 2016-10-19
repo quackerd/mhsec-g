@@ -16,6 +16,7 @@ namespace MHSEC_G
         public MainWindow()
         {
             InitializeComponent();
+            button_save.IsEnabled = false;
             Item.read_item_mappings();
             Array.Clear(dummy_data, 0, dummy_data.Length);
             this.Title = "MHSEC-G Ver" + Version;
@@ -43,6 +44,7 @@ namespace MHSEC_G
                 {
                     view_model = new ViewModel(buffer);
                     DataContext = view_model;
+                    button_save.IsEnabled = true;
                 }
             }
         }
@@ -91,8 +93,33 @@ namespace MHSEC_G
 
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllBytes("C:\\Users\\hyper\\Desktop\\mhr_save0.hacked", view_model.model.save_file);
-            MessageBox.Show("Saved to \"mhr_save0.hacked\"","MHSEC-G",MessageBoxButton.OK, MessageBoxImage.Information);
+            File.WriteAllBytes("mhr_game0.hacked", view_model.model.save_file);
+            MessageBox.Show("Saved to \"mhr_game0.hacked\"", "MHSEC-G",MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void button_give_epony_Click(object sender, RoutedEventArgs e)
+        {
+            EggFragment.write_dlc_egg_fragment(view_model.egg_fragments, view_model.model, 0x4);
+        }
+
+        private void button_give_bear_Click(object sender, RoutedEventArgs e)
+        {
+            EggFragment.write_dlc_egg_fragment(view_model.egg_fragments, view_model.model, 0x5);
+        }
+
+        private void button_give_mtiggy_Click(object sender, RoutedEventArgs e)
+        {
+            EggFragment.write_dlc_egg_fragment(view_model.egg_fragments, view_model.model, 0x10);
+        }
+
+        private void button_give_okirin_Click(object sender, RoutedEventArgs e)
+        {
+            EggFragment.write_dlc_egg_fragment(view_model.egg_fragments, view_model.model, 0x32);
+        }
+
+        private void button_give_dino_Click(object sender, RoutedEventArgs e)
+        {
+            EggFragment.write_dlc_egg_fragment(view_model.egg_fragments, view_model.model, 0x6);
         }
     }
 }

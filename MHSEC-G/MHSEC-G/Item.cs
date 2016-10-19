@@ -15,7 +15,7 @@ namespace MHSEC_G
         private static readonly uint OFFSETR_ITEM_COUNT = 0x2;
         private static readonly uint OFFSETA_ITEM_BOX_END = 0x2EE7;
 
-        private static readonly string ID_MAPPING_FILE_NAME = "C:\\Users\\hyper\\Desktop\\idmap.txt";
+        private static readonly string ID_MAPPING_FILE_NAME = "idmap.txt";
         private static readonly Dictionary<uint, uint> OFFSET_ID_MAPPING = new Dictionary<uint, uint>();
         private static readonly Dictionary<uint, string> OFFSET_NAME_MAPPING = new Dictionary<uint, string>();
 
