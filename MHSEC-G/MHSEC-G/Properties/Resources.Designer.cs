@@ -59,5 +59,73 @@ namespace MHSEC_G.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10	1	药草
+        ///18	2	回复药
+        ///20	3	回复G
+        ///28	4	回复粉
+        ///30	5	生命粉
+        ///38	6	生命大粉
+        ///40	7	秘药
+        ///48	16	气合のカタマリ
+        ///50	9	活力剂
+        ///58	8	いにしえの秘药
+        ///60	A	解毒草
+        ///68	B	解毒药
+        ///70	C	アロエ草
+        ///78	D	烧伤药
+        ///80	E	マヒワリの花
+        ///88	F	麻痹药
+        ///90	10	トウガラシ
+        ///98	11	元気ドリンコ
+        ///A0	12	多肉ニンニク
+        ///A8	13	熱血サプリ
+        ///B0	14	シャンボン菜
+        ///B8	15	爆破落とし洗剤
+        ///C0	18	メニーベリー
+        ///C8	19	目薬
+        ///D0	1A	万能ウチケシ薬
+        ///D8	AE	コゲ肉
+        ///E0	AF	生焼け肉
+        ///E8	B0	こんがり肉
+        ///F0	B1	マッスルミート
+        ///F8	B2	タフネスミート
+        ///100	B3	クィックミート
+        ///108	B4	こんがり肉Ｇ
+        ///110	1D	ハンタードーナツ
+        ///118	1F	ロア・ル・リング
+        ///120	20	バルドーナツ
+        ///128	21	ドスドーナツ
+        ///130	24	ギルドーナツ
+        ///138	25	アイルーシュガー
+        ///140	26	メラルーショコラ
+        ///148	27	こ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string idmap {
+            get {
+                return ResourceManager.GetString("idmap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon MainIcon {
+            get {
+                object obj = ResourceManager.GetObject("MainIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] monster_null_template {
+            get {
+                object obj = ResourceManager.GetObject("monster_null_template", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -27,12 +27,13 @@ namespace MHSEC_G
         {
             get { return _offset; }
         }
+
         private readonly Model _model;
 
         public string name
         {
             get {
-                string name = "Unknown";
+                string name = _offset >= OFFSETA_FIRST_KEY_ITEM ? "Key Item [" + id.ToString("X4") + "]" : "Unknown";
                 if (OFFSET_NAME_MAPPING.ContainsKey(_offset))
                 {
                      name = OFFSET_NAME_MAPPING[_offset];
@@ -76,9 +77,7 @@ namespace MHSEC_G
             List<Item> ret = new List<Item>();
             for (uint offset = OFFSETA_ITEM_BOX; offset < OFFSETA_ITEM_BOX_END; offset += SIZE_ITEM)
             {
-                string name = "Unknown";
                 uint item_id = Model.byte_to_uint16_le(buffer, offset + OFFSETR_ITEM_ID);
-
                 if (item_id == 0)
                 {
                     // if not obtained yet
@@ -88,7 +87,8 @@ namespace MHSEC_G
                         // continue
                         continue;
                     }
-
+                    // if we know the id to the offset, just set it
+                    Model.write_uint16_le(model.save_file, offset + OFFSETR_ITEM_ID, OFFSET_ID_MAPPING[offset]);
                 }
                 else
                 {
@@ -99,7 +99,8 @@ namespace MHSEC_G
                         if (item_id != OFFSET_ID_MAPPING[offset])
                         {
                             // correct to the correct id
-                            // BugCheck.bug_check(BugCheck.ErrorCode.ITEM_NO_CORRESPONDENCE, "Item offset " + offset.ToString("X") + " and item ID " + item_id.ToString("X") + " do not correspond.");
+                            // don't bug_check since too many people's files are broken
+                            // TODO: BugCheck.bug_check(BugCheck.ErrorCode.ITEM_NO_CORRESPONDENCE, "Item offset " + offset.ToString("X") + " and item ID " + item_id.ToString("X") + " do not correspond.");
                             Model.write_uint16_le(model.save_file, offset + OFFSETR_ITEM_ID, OFFSET_ID_MAPPING[offset]);
                         }
                     }
@@ -113,15 +114,8 @@ namespace MHSEC_G
         public static void read_item_mappings()
         {
             string line;
-            System.IO.StreamReader file = null;
+            StringReader file = new StringReader(Properties.Resources.idmap);
 
-            if (!File.Exists(ID_MAPPING_FILE_NAME))
-            {
-                BugCheck.bug_check(BugCheck.ErrorCode.ITEM_MAPPING_DNE,
-                    "Cannot find mapping file " + ID_MAPPING_FILE_NAME);
-            }
-
-            file = new System.IO.StreamReader(ID_MAPPING_FILE_NAME);
             while ((line = file.ReadLine()) != null)
             {
                 if (line.Length == 0)
@@ -130,11 +124,12 @@ namespace MHSEC_G
                 string[] eachline = line.Split('\t');
                 if (eachline.Length != 3)
                 {
+
                     BugCheck.bug_check(BugCheck.ErrorCode.ITEM_MAPPING_CORRUPTED, "Invalid mapping file line:\n" + line);
                 }
 
-                OFFSET_ID_MAPPING.Add(UInt32.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), UInt32.Parse(eachline[1], System.Globalization.NumberStyles.HexNumber));
-                OFFSET_NAME_MAPPING.Add(UInt32.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), eachline[2]);
+                OFFSET_ID_MAPPING.Add(uint.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), uint.Parse(eachline[1], System.Globalization.NumberStyles.HexNumber));
+                OFFSET_NAME_MAPPING.Add(uint.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber), eachline[2]);
             }
 
             file.Close();

@@ -5,130 +5,266 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MHSEC_G"
         mc:Ignorable="d"
-        Title="" Height="447.855" Width="761.218" ResizeMode="NoResize">
+        Title="" Height="447.855" Width="761.218" ResizeMode="NoResize" Icon="Resources/MainIcon.ico">
     <Grid HorizontalAlignment="Left" Width="756" Margin="0,0,0,0">
 
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="344" Margin="10,51,0,0" VerticalAlignment="Top" Width="726">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="344" Margin="10,51,0,0"
+                    VerticalAlignment="Top" Width="726">
             <TabItem Header="Character">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <Label x:Name="label_name" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label_money" Content="Money" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label_leve" Content="Level" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label_exp" Content="Exp" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="61,14,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.name}"/>
-                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="61,44,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.money}"/>
-                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="61,74,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.level}"/>
-                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="61,104,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.exp}"/>
-                    <Button x:Name="button_char_money" Content="Max Money" HorizontalAlignment="Left" Margin="200,44,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953" Height="22" Click="button_char_money_Click"/>
-                    <Button x:Name="button_char_exp" Content="Max Exp" HorizontalAlignment="Left" Margin="200,104,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953" Height="22" Click="button_char_exp_Click"/>
+                    <Label x:Name="label_name" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0"
+                           VerticalAlignment="Top" />
+                    <Label x:Name="label_money" Content="Money" HorizontalAlignment="Left" Margin="10,40,0,0"
+                           VerticalAlignment="Top" />
+                    <Label x:Name="label_leve" Content="Level" HorizontalAlignment="Left" Margin="10,70,0,0"
+                           VerticalAlignment="Top" />
+                    <Label x:Name="label_exp" Content="Exp" HorizontalAlignment="Left" Margin="10,100,0,0"
+                           VerticalAlignment="Top" />
+                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="61,14,0,0"
+                             TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.name}" />
+                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="61,44,0,0"
+                             TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.money}" />
+                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="61,74,0,0"
+                             TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.level}" />
+                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="61,104,0,0"
+                             TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.exp}" />
+                    <Button x:Name="button_char_money" Content="Max Money" HorizontalAlignment="Left"
+                            Margin="200,44,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953"
+                            Height="22" Click="button_char_money_Click" />
+                    <Button x:Name="button_char_exp" Content="Max Exp" HorizontalAlignment="Left" Margin="200,104,0,0"
+                            VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953" Height="22"
+                            Click="button_char_exp_Click" />
 
                 </Grid>
             </TabItem>
             <TabItem Header="Egg Fragments">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="egg_frag_grid" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="271" Width="556" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Path=egg_fragments}">
+                    <DataGrid x:Name="egg_frag_grid" HorizontalAlignment="Left" Margin="10,35,0,0"
+                              VerticalAlignment="Top" Height="271" Width="556" CanUserAddRows="False"
+                              AutoGenerateColumns="False" ItemsSource="{Binding Path=egg_fragments}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding spe}"
-                                Header="Species" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False"  Width ="60" Binding="{Binding pos}"
-                                Header="Position" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding new_flag}"
-                                Header="New?" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding rarity}"
-                                Header="Rarity" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding color}"
-                                Header="Color" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding dlc}"
-                                Header="DLC" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="60" Binding="{Binding unknown_7h}"
-                                Header="0x6" />
-                        <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="*" Binding="{Binding unknown_6h}"
-                                Header="0x7" />
-                            </DataGrid.Columns>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding spe}"
+                                                Header="Species" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding pos}"
+                                                Header="Position" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding new_flag}"
+                                                Header="New?" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding rarity}"
+                                                Header="Rarity" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding color}"
+                                                Header="Color" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding dlc}"
+                                                Header="DLC" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="60" Binding="{Binding unknown_7h}"
+                                                Header="0x6" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="*" Binding="{Binding unknown_6h}"
+                                                Header="0x7" />
+                        </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_give_dino" Content="Give Dinovaldo" HorizontalAlignment="Left" Margin="584,195,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_dino_Click"/>
-                    <Button x:Name="button_give_epony" Content="Give Epony" HorizontalAlignment="Left" Margin="584,35,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_epony_Click"/>
-                    <Button x:Name="button_give_bear" Content="Give Mascot" HorizontalAlignment="Left" Margin="584,75,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_bear_Click"/>
-                    <Button x:Name="button_give_mtiggy" IsEnabled="False" Content="Give Molten Tigrex" HorizontalAlignment="Left" Margin="584,115,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_mtiggy_Click"/>
-                    <Button x:Name="button_give_okirin" IsEnabled="False" Content="Give Oroshi Kirin" HorizontalAlignment="Left" Margin="584,155,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="button_give_okirin_Click"/>
-                    <TextBlock x:Name="textblock_egg_frag" HorizontalAlignment="Left" Margin="575,241,0,0" TextWrapping="Wrap" Text="Note: You can only give yourself one DLC monster at a time." VerticalAlignment="Top" RenderTransformOrigin="-0.182,-0.531" Width="125"/>
-                    <TextBlock x:Name="textblock_egg_frag_n" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="If interested, try giving yourself DLC eggs and modify each shard's DLC byte to 0x4 and up. You can get other DLC monsters!" VerticalAlignment="Top"/>
+                    <Button x:Name="button_give_dino" Content="Give Dinovaldo" HorizontalAlignment="Left"
+                            Margin="584,195,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_dino_Click" />
+                    <Button x:Name="button_give_epony" Content="Give Epony" HorizontalAlignment="Left"
+                            Margin="584,35,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_epony_Click" />
+                    <Button x:Name="button_give_bear" Content="Give Mascot" HorizontalAlignment="Left"
+                            Margin="584,75,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_bear_Click" />
+                    <Button x:Name="button_give_mtiggy" Content="Give Molten Tigrex" HorizontalAlignment="Left"
+                            Margin="584,115,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_mtiggy_Click" />
+                    <Button x:Name="button_give_okirin" Content="Give Oroshi Kirin" HorizontalAlignment="Left"
+                            Margin="584,155,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_okirin_Click" />
+                    <TextBlock x:Name="textblock_egg_frag_n" HorizontalAlignment="Left" Margin="10,10,0,0"
+                               TextWrapping="Wrap"
+                               Text="If interested, try giving yourself DLC eggs and modify each shard's DLC byte to 0x4 and up. You can get other DLC monsters!"
+                               VerticalAlignment="Top" />
+                    <Button x:Name="button_give_pd" Content="Give Puzzle Dragon" HorizontalAlignment="Left"
+                            Margin="584,235,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_pd_Click" />
+                    <Button x:Name="button_give_wm" Content="Give W. Monoblos" HorizontalAlignment="Left"
+                            Margin="584,275,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Click="button_give_wm_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Items">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <DataGrid x:Name="item_table" ItemsSource="{Binding items}" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Height="276" Width="550" CanUserAddRows="False" AutoGenerateColumns="False" >
+                    <DataGrid x:Name="item_table" ItemsSource="{Binding items}" HorizontalAlignment="Left"
+                              Margin="10,30,0,0" VerticalAlignment="Top" Height="276" Width="550"
+                              CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="100" Foreground="Gray" IsReadOnly="True" Binding="{Binding id}"
-                                Header="ID" />
-                            <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False"  Width ="100" Foreground="Gray" IsReadOnly="True" Binding="{Binding name}"
-                                Header="Name" />
-                            <DataGridTextColumn CanUserReorder ="False" CanUserResize="False" CanUserSort="False" Width ="*" Binding="{Binding count, Mode=TwoWay}"
-                                Header="Count" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="100" Foreground="Gray" IsReadOnly="True" Binding="{Binding offset , StringFormat={}{0:X4}}"
+                                                Header="Offset (Hex)" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="100" Foreground="Gray" IsReadOnly="True" Binding="{Binding id , StringFormat={}{0:X4}}"
+                                                Header="ID (Hex)" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="125" Foreground="Gray" IsReadOnly="True"
+                                                Binding="{Binding name}"
+                                                Header="Name" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="*" Binding="{Binding count, Mode=TwoWay}"
+                                                Header="Count" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_item_all" Content="All 986x" HorizontalAlignment="Left" Margin="586,30,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.065,-0.953" Height="45" Click="button_item_all_Click"/>
-                    <Button x:Name="button_item_existing" Content="Existing 999x" HorizontalAlignment="Left" Margin="586,94,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.065,-0.953" Height="45" Click="button_item_existing_Click"/>
+                    <Button x:Name="button_item_all" Content="All 986x" HorizontalAlignment="Left" Margin="586,30,0,0"
+                            VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.065,-0.953" Height="45"
+                            Click="button_item_all_Click" />
+                    <Button x:Name="button_item_existing" Content="Existing 999x" HorizontalAlignment="Left"
+                            Margin="586,94,0,0" VerticalAlignment="Top" Width="108"
+                            RenderTransformOrigin="0.065,-0.953" Height="45" Click="button_item_existing_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Monsters" Margin="0,0,0,0">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label_mhp" Content="HP" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mat" Content="Atk" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mdf" Content="Def" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mhiv" Content="IV-HP" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mdiv" Content="IV-Atk" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_maiv" Content="IV-Def" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mhpu" Content="PowerUp-HP" HorizontalAlignment="Left" Margin="150,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mapu" Content="PowerUp-Atk" HorizontalAlignment="Left" Margin="150,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="150,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072"/>
-                    <Label x:Name="label_mgen1" Content="Gene1 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="385,85,0,0"/>
-                    <Label x:Name="label_mgen2" Content="Gene2 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="505,85,0,0"/>
-                    <Label x:Name="label_mgen3" Content="Gene3 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="625,85,0,0" RenderTransformOrigin="0.537,0.19"/>
-                    <Label x:Name="label_mgen4" Content="Gene4 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="385,155,0,0"/>
-                    <Label x:Name="label_mgen5" Content="Gene5 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="505,155,0,0" RenderTransformOrigin="0.524,0.439"/>
-                    <Label x:Name="label_mgen6" Content="Gene6 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="625,155,0,0"/>
-                    <Label x:Name="label_mgen7" Content="Gene7 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="385,225,0,0"/>
-                    <Label x:Name="label_mgen8" Content="Gene8 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="505,225,0,0"/>
-                    <Label x:Name="label_mgen9" Content="Gene9 (Hex)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="625,225,0,0"/>
-                    <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="60,87,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.hp}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mat" HorizontalAlignment="Left" Height="23" Margin="60,117,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.atk}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mdf" HorizontalAlignment="Left" Height="23" Margin="60,147,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.def}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mhiv" HorizontalAlignment="Left" Height="23" Margin="60,177,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.hiv}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_maiv" HorizontalAlignment="Left" Height="23" Margin="60,207,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.aiv}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mdiv" HorizontalAlignment="Left" Height="23" Margin="60,237,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.div}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mhpu" HorizontalAlignment="Left" Height="23" Margin="240,177,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.hpu}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mapu" HorizontalAlignment="Left" Height="23" Margin="240,207,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.apu}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,237,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.dpu}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene1}" VerticalAlignment="Top" Width="80" Margin="385,120,0,0"/>
-                    <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene2}" VerticalAlignment="Top" Width="80" Margin="505,120,0,0"/>
-                    <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene3}" VerticalAlignment="Top" Width="80" Margin="625,120,0,0"/>
-                    <TextBox x:Name="textbox_gene4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene4}" VerticalAlignment="Top" Width="80" Margin="385,190,0,0"/>
-                    <TextBox x:Name="textbox_gene5" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene5}" VerticalAlignment="Top" Width="80" Margin="505,190,0,0"/>
-                    <TextBox x:Name="textbox_gene6" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene6}" VerticalAlignment="Top" Width="80" Margin="625,190,0,0"/>
-                    <TextBox x:Name="textbox_gene7" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene7}" VerticalAlignment="Top" Width="80" Margin="385,260,0,0"/>
-                    <TextBox x:Name="textbox_gene8" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene8}" VerticalAlignment="Top" Width="80" Margin="505,260,0,0"/>
-                    <TextBox x:Name="textbox_gene9" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=cur_monster.gene9}" VerticalAlignment="Top" Width="80" Margin="625,260,0,0"/>
-                    <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="150,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135"/>
-                    <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="150,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135"/>
-                    <Label x:Name="label_spe" Content="Species (Hex)" HorizontalAlignment="Left" Margin="150,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135"/>
-                    <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,87,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.level}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_mex" HorizontalAlignment="Left" Height="24" Margin="240,117,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.exp}" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="textbox_spe" HorizontalAlignment="Left" Height="24" Margin="240,147,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.spe}" VerticalAlignment="Top" Width="75"/>
-                    <Label x:Name="label_mname" Content="Name" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textbox_mname" HorizontalAlignment="Left" Height="22" Margin="60,58,0,0" TextWrapping="Wrap" Text="{Binding Path=cur_monster.name}" VerticalAlignment="Top" Width="255"/>
-                    <Label x:Name="label_slct" Content="Monster" HorizontalAlignment="Left" Margin="2,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.466,0.596"/>
-                    <ComboBox x:Name="combobox_slct" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="255" ItemsSource="{Binding Path=monsters}" DisplayMemberPath="full_name" IsReadOnly="True" SelectedValue="{Binding Path=cur_monster}"/>
-                    <Label x:Name="label_m_warn" Content="Warning: The sum of PowerUps should be at most 10." HorizontalAlignment="Left" Margin="12,265,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label_m_warn2" Content="The exact IV algorithm is unknown. Edit wisely." HorizontalAlignment="Left" Margin="62,285,0,0" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="385,16,0,0" TextWrapping="Wrap" Text="MHST Gene 101:&#x0a;0x0001 = Empty Slot&#x0a;0x0002 = No Slot&#x0a;For other genes codes, refer to the gene code mapping." VerticalAlignment="Top"/>
-                    <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="193,119,0,0" VerticalAlignment="Top" Width="35" Click="button_mexp_Click"/>
+                    <Label x:Name="label_mhp" Content="HP" HorizontalAlignment="Left" Margin="10,85,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mat" Content="Atk" HorizontalAlignment="Left" Margin="10,115,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mdf" Content="Def" HorizontalAlignment="Left" Margin="10,145,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mhiv" Content="IV-HP" HorizontalAlignment="Left" Margin="10,175,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mdiv" Content="IV-Atk" HorizontalAlignment="Left" Margin="10,205,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_maiv" Content="IV-Def" HorizontalAlignment="Left" Margin="10,235,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mhpu" Content="PowerUp-HP" HorizontalAlignment="Left" Margin="150,175,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mapu" Content="PowerUp-Atk" HorizontalAlignment="Left" Margin="150,205,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="150,235,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+                    <Label x:Name="label_mgen1" Content="Gene 1 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="385,85,0,0" />
+                    <Label x:Name="label_mgen2" Content="Gene 2 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="505,85,0,0" />
+                    <Label x:Name="label_mgen3" Content="Gene 3 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="625,85,0,0" RenderTransformOrigin="0.537,0.19" />
+                    <Label x:Name="label_mgen4" Content="Gene 4 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="385,155,0,0" />
+                    <Label x:Name="label_mgen5" Content="Gene 5 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="505,155,0,0" RenderTransformOrigin="0.524,0.439" />
+                    <Label x:Name="label_mgen6" Content="Gene 6 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="625,155,0,0" />
+                    <Label x:Name="label_mgen7" Content="Gene 7 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="385,225,0,0" />
+                    <Label x:Name="label_mgen8" Content="Gene 8 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="505,225,0,0" />
+                    <Label x:Name="label_mgen9" Content="Gene 9 (Hex)" HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="625,225,0,0" />
+                    <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="60,87,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hp}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mat" HorizontalAlignment="Left" Height="23" Margin="60,117,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.atk}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mdf" HorizontalAlignment="Left" Height="23" Margin="60,147,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.def}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mhiv" HorizontalAlignment="Left" Height="23" Margin="60,177,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hiv}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_maiv" HorizontalAlignment="Left" Height="23" Margin="60,207,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.aiv}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mdiv" HorizontalAlignment="Left" Height="23" Margin="60,237,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.div}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mhpu" HorizontalAlignment="Left" Height="23" Margin="240,177,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hpu}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mapu" HorizontalAlignment="Left" Height="23" Margin="240,207,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.apu}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,237,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.dpu}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene1}" VerticalAlignment="Top" Width="80"
+                             Margin="385,120,0,0" />
+                    <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene2}" VerticalAlignment="Top" Width="80"
+                             Margin="505,120,0,0" />
+                    <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene3}" VerticalAlignment="Top" Width="80"
+                             Margin="625,120,0,0" />
+                    <TextBox x:Name="textbox_gene4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene4}" VerticalAlignment="Top" Width="80"
+                             Margin="385,190,0,0" />
+                    <TextBox x:Name="textbox_gene5" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene5}" VerticalAlignment="Top" Width="80"
+                             Margin="505,190,0,0" />
+                    <TextBox x:Name="textbox_gene6" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene6}" VerticalAlignment="Top" Width="80"
+                             Margin="625,190,0,0" />
+                    <TextBox x:Name="textbox_gene7" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene7}" VerticalAlignment="Top" Width="80"
+                             Margin="385,260,0,0" />
+                    <TextBox x:Name="textbox_gene8" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene8}" VerticalAlignment="Top" Width="80"
+                             Margin="505,260,0,0" />
+                    <TextBox x:Name="textbox_gene9" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene9}" VerticalAlignment="Top" Width="80"
+                             Margin="625,260,0,0" />
+                    <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="150,85,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
+                    <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="150,115,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
+                    <Label x:Name="label_spe" Content="Species (Hex)" HorizontalAlignment="Left" Margin="150,145,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
+                    <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,87,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.level}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_mex" HorizontalAlignment="Left" Height="24" Margin="240,117,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.exp}" VerticalAlignment="Top"
+                             Width="75" />
+                    <TextBox x:Name="textbox_spe" HorizontalAlignment="Left" Height="24" Margin="240,147,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.spe, StringFormat={}{0:X2}}" VerticalAlignment="Top"
+                             Width="75"/>
+                    <Label x:Name="label_mname" Content="Name" HorizontalAlignment="Left" Margin="10,54,0,0"
+                           VerticalAlignment="Top" />
+                    <TextBox x:Name="textbox_mname" HorizontalAlignment="Left" Height="22" Margin="60,58,0,0"
+                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.name}" VerticalAlignment="Top"
+                             Width="255" />
+                    <Label x:Name="label_slct" Content="Monster" HorizontalAlignment="Left" Margin="2,10,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.466,0.596" />
+                    <ComboBox x:Name="combobox_slct" HorizontalAlignment="Left" Margin="60,10,0,0"
+                              VerticalAlignment="Top" Width="168" ItemsSource="{Binding Path=monsters}"
+                              DisplayMemberPath="full_name" IsReadOnly="True"
+                              SelectedValue="{Binding Path=cur_monster}" />
+                    <Label x:Name="label_m_warn" Content="Warning: The sum of PowerUps should be at most 10."
+                           HorizontalAlignment="Left" Margin="12,265,0,0" VerticalAlignment="Top" />
+                    <Label x:Name="label_m_warn2" Content="The exact IV algorithm is unknown. Edit wisely."
+                           HorizontalAlignment="Left" Margin="62,285,0,0" VerticalAlignment="Top" />
+                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="385,16,0,0"
+                               TextWrapping="Wrap"
+                               Text="MHST Gene 101:&#x0a;0x0001 = Empty Slot&#x0a;0x0002 = No Slot&#x0a;For other gene codes, refer to the gene code mapping."
+                               VerticalAlignment="Top" />
+                    <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="193,119,0,0"
+                            VerticalAlignment="Top" Width="35" Click="button_mexp_Click" />
+                    <Button x:Name="button_mdel" Content="Delete" HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top" Width="76" Click="button_mdel_Click"/>
+                    <Label x:Name="label" Content="Don't delete monsters currently in your party." HorizontalAlignment="Left" Margin="60,30,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74" Click="button_save_Click"/>
-        <Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="74" Click="button_load_click"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="1046,415,-390,-95.5" VerticalAlignment="Top" Width="100"/>
-        <Label x:Name="label_copy" Content="By secXsQuared" HorizontalAlignment="Left" Margin="642,7,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0"
+                VerticalAlignment="Top" Width="74" Click="button_save_Click" />
+        <Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="90,10,0,0"
+                VerticalAlignment="Top" Width="74" Click="button_load_click" />
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="1046,415,-390,-95.5"
+                  VerticalAlignment="Top" Width="100" />
+        <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
     </Grid>
 </Window>
+

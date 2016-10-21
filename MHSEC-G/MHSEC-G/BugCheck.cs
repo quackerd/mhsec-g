@@ -22,8 +22,7 @@ namespace MHSEC_G
 
             // Faciltiy Item
             ITEM_NO_CORRESPONDENCE = 0x21,
-            ITEM_MAPPING_CORRUPTED = 0x22,
-            ITEM_MAPPING_DNE = 0x23,
+            ITEM_MAPPING_CORRUPTED = 0x22
 
         }
         public static void bug_check(ErrorCode error_code, string error_message)

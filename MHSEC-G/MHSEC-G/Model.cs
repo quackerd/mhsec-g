@@ -133,6 +133,10 @@ namespace MHSEC_G
             {
                 return false;
             }
+            catch (ArgumentException)
+            {
+                return false;
+            }
             return true;
         }
     }
