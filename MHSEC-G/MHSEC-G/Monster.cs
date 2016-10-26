@@ -409,6 +409,7 @@ namespace MHSEC_G
             {
                 set_gene_str(2, value);
                 OnPropertyChanged(nameof(gene3));
+                OnPropertyChanged(nameof(gene3_selected));
             }
         }
 
