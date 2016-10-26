@@ -247,9 +247,9 @@
                            HorizontalAlignment="Left" Margin="12,265,0,0" VerticalAlignment="Top" />
                     <Label x:Name="label_m_warn2" Content="The exact IV algorithm is unknown. Edit wisely."
                            HorizontalAlignment="Left" Margin="62,285,0,0" VerticalAlignment="Top" />
-                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="385,10,0,0"
+                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="338,4,0,0"
                                TextWrapping="Wrap"
-                               Text="Thank mana_ran@gbatemp.net for gene translations :)"
+                               Text="Thank mana_ran@gbatemp.net for gene translations :)&#xD;Do NOT use genes that start with &quot;[D]&quot; They are potentially game-crashing."
                                VerticalAlignment="Top" />
                     <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="193,119,0,0"
                             VerticalAlignment="Top" Width="35" Click="button_mexp_Click" />
