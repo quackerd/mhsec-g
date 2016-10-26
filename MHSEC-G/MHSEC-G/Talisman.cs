@@ -1,230 +1,165 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
     public class Talisman
     {
-//        private const uint OFFSETA_EGG_FRAGMENTS = 0x9790;
-//        private const uint OFFSETA_EGG_FRAGMENTS_END = 0x9C3F;
-//        private const uint SIZE_EGG_FRAGMENT = 0xC;
-//        private const uint OFFSETR_EF_SPE = 0x0;
-//        private const uint OFFSETR_EF_POS = 0x1;
-//        private const uint OFFSETR_EF_NEW = 0x2;
-//        private const uint OFFSETR_EF_RAR = 0x3;
-//        private const uint OFFSETR_EF_COL = 0x4;
-//        private const uint OFFSETR_EF_DLC = 0x5;
-//        private const uint OFFSETR_EF_6H = 0x6;
-//        private const uint OFFSETR_EF_7H = 0x7;
-//
-//        private readonly uint _offset;
-//
-//        public uint offset
-//        {
-//            get { return _offset; }
-//        }
-//        private readonly Model _model;
-//        public EggFragment(uint offset, Model model)
-//        {
-//            _model = model;
-//            _offset = offset;
-//        }
-//
-//        public string spe
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_SPE]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x0C)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_SPE, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed Species value - must be at most 0xC", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(spe));
-//            }
-//        }
-//
-//        public string pos
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_POS]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x08)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_POS, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed Position value - must be at most 0x8", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(pos));
-//            }
-//        }
-//
-//        public string new_flag
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_NEW]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x01)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_NEW, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed New value - must be 0 or 1", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(new_flag));
-//            }
-//        }
-//        public string rarity
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_RAR]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x01)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_RAR, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed Rarity value - must be 0 or 1", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(rarity));
-//            }
-//        }
-//
-//        public string color
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_COL]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_COL, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed Species value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(color));
-//            }
-//        }
-//
-//        public string dlc
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_DLC]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_DLC, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed DLC value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(dlc));
-//            }
-//        }
-//
-//        public string unknown_6h
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_6H]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_6H, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed Species value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(unknown_6h));
-//            }
-//        }
-//
-//        public string unknown_7h
-//        {
-//            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_7H]).ToString("X2"); }
-//            set
-//            {
-//                uint parsed;
-//                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
-//                {
-//                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_7H, parsed);
-//                }
-//                else
-//                {
-//                    MessageBox.Show("Malformed 7h value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-//                }
-//                OnPropertyChanged(nameof(unknown_7h));
-//            }
-//        }
-//
-//        public static ObservableCollection<EggFragment> read_all_egg_fragments(Model model)
-//        {
-//            ObservableCollection<EggFragment> ret = new ObservableCollection<EggFragment>();
-//            byte[] buffer = model.save_file;
-//            for (uint offset = OFFSETA_EGG_FRAGMENTS; offset < OFFSETA_EGG_FRAGMENTS_END; offset += SIZE_EGG_FRAGMENT)
-//            {
-//                if (buffer[offset] == 0)
-//                    continue;
-//                ret.Add(new EggFragment(offset, model));
-//            }
-//            return ret;
-//        }
-//
-//
-//        private static EggFragment egg_frag_offset_exist(ObservableCollection<EggFragment> fragments, uint offset)
-//        {
-//            for (uint i = 0; i < fragments.Count; i++)
-//            {
-//                if (fragments.ElementAt((int)i).offset == offset)
-//                    return fragments.ElementAt((int)i);
-//            }
-//            return null;
-//        }
-//
-//        public static void write_dlc_egg_fragment(ObservableCollection<EggFragment> fragments, Model model, uint dlc)
-//        {
-//            for (uint offset = OFFSETA_EGG_FRAGMENTS; offset < OFFSETA_EGG_FRAGMENTS + 9 * SIZE_EGG_FRAGMENT; offset += SIZE_EGG_FRAGMENT)
-//            {
-//                EggFragment each_frag = egg_frag_offset_exist(fragments, offset);
-//                if (each_frag == null)
-//                {
-//                    each_frag = new EggFragment(offset, model);
-//                    fragments.Insert((int)((offset - OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT), each_frag);
-//                }
-//                each_frag.new_flag = "0";
-//                each_frag.spe = "08";
-//                each_frag.pos = ((offset - OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT).ToString();
-//                each_frag.rarity = "0";
-//                each_frag.color = "0";
-//                each_frag.dlc = dlc.ToString("X2");
-//                each_frag.unknown_6h = "0";
-//                each_frag.unknown_7h = "0";
-//
-//            }
-//        }
-//
-//        public event PropertyChangedEventHandler PropertyChanged;
-//
-//        [NotifyPropertyChangedInvocator]
-//        protected virtual void OnPropertyChanged(string propertyName)
-//        {
-//            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-//        }
-//    }
+        private const uint OFFSETA_TALI = 0x7210;
+        private const uint OFFSETA_TALI_END = 0x978F;
+        private const uint SIZE_TALI = 0x30;
+        private const uint OFFSETR_TALI_RARITY = 0x24;
+        private const uint OFFSETR_TALI_NEW = 0x12;
+        private const uint OFFSETR_TALI_SKILL1 = 0x28;
+        private const uint OFFSETR_TALI_SKILL2 = 0x2A;
+        private const uint OFFSETR_TALI_ID = 0x2;
+        private const uint OFFSETR_EQUIPPED = 0x11;
+
+        private readonly uint _offset;
+
+        public uint offset
+        {
+            get { return _offset; }
+        }
+
+        private readonly Model _model;
+
+        public Talisman(uint offset, Model model)
+        {
+            _model = model;
+            _offset = offset;
+        }
+
+        public string rarity
+        {
+            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_TALI_RARITY]).ToString("X2"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                {
+                    Model.write_byte(_model.save_file, _offset + OFFSETR_TALI_RARITY, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Rarity - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(rarity));
+            }
+        }
+
+        public string id
+        {
+            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_ID).ToString("X4"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                {
+                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_ID, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Talisman ID - must be at most 0xFFFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(id));
+            }
+        }
+
+        public string new_flag
+        {
+            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_TALI_NEW]).ToString("X2"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x1)
+                {
+                    Model.write_byte(_model.save_file, _offset + OFFSETR_TALI_NEW, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed New flag - must be at most 0x1", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(new_flag));
+            }
+        }
+        public string skill1
+        {
+            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL1).ToString("X4"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                {
+                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL1, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Skill 1 - must be at most 0xFFFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(skill1));
+            }
+        }
+
+        public string skill2
+        {
+            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL2).ToString("X4"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                {
+                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL2, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Skill 2 - must be at most 0xFFFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(skill2));
+            }
+        }
+
+        public string equipped
+        {
+            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EQUIPPED]).ToString("X2"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                {
+                    Model.write_byte(_model.save_file, _offset + OFFSETR_EQUIPPED, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Equipped value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(equipped));
+            }
+        }
+        
+        public static ObservableCollection<Talisman> read_all_talismans(Model model)
+        {
+            ObservableCollection<Talisman> ret = new ObservableCollection<Talisman>();
+            byte[] buffer = model.save_file;
+            for (uint offset = OFFSETA_TALI; offset < OFFSETA_TALI_END; offset += SIZE_TALI)
+            {
+                if (Model.byte_to_uint16_le(buffer, offset + OFFSETR_TALI_ID)  == 0)
+                    continue;
+                ret.Add(new Talisman(offset, model));
+            }
+            return ret;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
+

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MHSEC_G"
         mc:Ignorable="d"
-        Title="" Height="447.855" Width="761.218" ResizeMode="NoResize" Icon="Resources/MainIcon.ico">
-    <Grid HorizontalAlignment="Left" Width="756" Margin="0,0,0,0">
+        Title="" Height="447.855" Width="810.218" ResizeMode="NoResize" Icon="Resources/MainIcon.ico">
+    <Grid HorizontalAlignment="Left" Width="800" Margin="0,0,0,-0.5">
 
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="344" Margin="10,51,0,0"
-                    VerticalAlignment="Top" Width="726">
+                    VerticalAlignment="Top" Width="780">
             <TabItem Header="Character">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
                     <Label x:Name="label_name" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0"
@@ -70,30 +70,29 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="button_give_dino" Content="Give Dinovaldo" HorizontalAlignment="Left"
-                            Margin="584,195,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,195,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_dino_Click" />
                     <Button x:Name="button_give_epony" Content="Give Epony" HorizontalAlignment="Left"
-                            Margin="584,35,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,35,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_epony_Click" />
                     <Button x:Name="button_give_bear" Content="Give Mascot" HorizontalAlignment="Left"
-                            Margin="584,75,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,75,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_bear_Click" />
                     <Button x:Name="button_give_mtiggy" Content="Give Molten Tigrex" HorizontalAlignment="Left"
-                            Margin="584,115,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,115,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_mtiggy_Click" />
                     <Button x:Name="button_give_okirin" Content="Give Oroshi Kirin" HorizontalAlignment="Left"
-                            Margin="584,155,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,155,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_okirin_Click" />
-                    <TextBlock x:Name="textblock_egg_frag_n" HorizontalAlignment="Left" Margin="10,10,0,0"
-                               TextWrapping="Wrap"
-                               Text="If interested, try giving yourself DLC eggs and modify each shard's DLC byte to 0x4 and up. You can get other DLC monsters!"
-                               VerticalAlignment="Top" />
                     <Button x:Name="button_give_pd" Content="Give Puzzle Dragon" HorizontalAlignment="Left"
-                            Margin="584,235,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,235,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_pd_Click" />
                     <Button x:Name="button_give_wm" Content="Give W. Monoblos" HorizontalAlignment="Left"
-                            Margin="584,275,0,0" VerticalAlignment="Top" Width="110" Height="30"
+                            Margin="622,275,0,0" VerticalAlignment="Top" Width="110" Height="30"
                             Click="button_give_wm_Click" />
+                    <Button x:Name="button_eggf_new" IsEnabled="False" Content="New" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="button_eggf_delete" IsEnabled="False" Content="Delete" HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Label x:Name="temp_label_eggf" Content="New/Delete coming soon..." HorizontalAlignment="Left" Margin="181,7,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Items">
@@ -117,12 +116,13 @@
                                                 Header="Count" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_item_all" Content="All 986x" HorizontalAlignment="Left" Margin="586,30,0,0"
+                    <Button x:Name="button_item_all" Content="All 986x" HorizontalAlignment="Left" Margin="615,30,0,0"
                             VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.065,-0.953" Height="45"
                             Click="button_item_all_Click" />
                     <Button x:Name="button_item_existing" Content="Existing 999x" HorizontalAlignment="Left"
-                            Margin="586,94,0,0" VerticalAlignment="Top" Width="108"
+                            Margin="615,96,0,0" VerticalAlignment="Top" Width="108"
                             RenderTransformOrigin="0.065,-0.953" Height="45" Click="button_item_existing_Click" />
+                    <Label x:Name="label_item_ack" Content="Thank 妾发@bbs.duowan.com for item id mappings :)" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Monsters" Margin="0,0,0,0">
@@ -146,23 +146,23 @@
                     <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="150,235,0,0"
                            VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
                     <Label x:Name="label_mgen1" Content="Gene 1 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="385,85,0,0" />
+                           VerticalAlignment="Top" Margin="364,31,0,0" />
                     <Label x:Name="label_mgen2" Content="Gene 2 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,85,0,0" />
+                           VerticalAlignment="Top" Margin="505,31,0,0" />
                     <Label x:Name="label_mgen3" Content="Gene 3 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="625,85,0,0" RenderTransformOrigin="0.537,0.19" />
+                           VerticalAlignment="Top" Margin="652,31,0,0" RenderTransformOrigin="0.537,0.19" />
                     <Label x:Name="label_mgen4" Content="Gene 4 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="385,155,0,0" />
+                           VerticalAlignment="Top" Margin="364,117,0,0" />
                     <Label x:Name="label_mgen5" Content="Gene 5 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,155,0,0" RenderTransformOrigin="0.524,0.439" />
+                           VerticalAlignment="Top" Margin="505,117,0,0" RenderTransformOrigin="0.524,0.439" />
                     <Label x:Name="label_mgen6" Content="Gene 6 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="625,155,0,0" />
+                           VerticalAlignment="Top" Margin="652,117,0,0" />
                     <Label x:Name="label_mgen7" Content="Gene 7 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="385,225,0,0" />
+                           VerticalAlignment="Top" Margin="364,205,0,0" />
                     <Label x:Name="label_mgen8" Content="Gene 8 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,225,0,0" />
+                           VerticalAlignment="Top" Margin="505,207,0,0" />
                     <Label x:Name="label_mgen9" Content="Gene 9 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="625,225,0,0" />
+                           VerticalAlignment="Top" Margin="652,207,0,0" />
                     <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="60,87,0,0"
                              TextWrapping="Wrap" Text="{Binding Path=cur_monster.hp}" VerticalAlignment="Top"
                              Width="75" />
@@ -190,33 +190,33 @@
                     <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,237,0,0"
                              TextWrapping="Wrap" Text="{Binding Path=cur_monster.dpu}" VerticalAlignment="Top"
                              Width="75" />
-                    <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene1}" VerticalAlignment="Top" Width="80"
-                             Margin="385,120,0,0" />
-                    <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene2}" VerticalAlignment="Top" Width="80"
-                             Margin="505,120,0,0" />
-                    <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene3}" VerticalAlignment="Top" Width="80"
-                             Margin="625,120,0,0" />
+                    <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene1}" VerticalAlignment="Top" Width="129"
+                             Margin="336,58,0,0" />
+                    <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene2}" VerticalAlignment="Top" Width="129"
+                             Margin="480,58,0,0" />
+                    <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                             Text="{Binding Path=cur_monster.gene3}" VerticalAlignment="Top" Width="129"
+                             Margin="625,58,0,0" />
                     <TextBox x:Name="textbox_gene4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene4}" VerticalAlignment="Top" Width="80"
-                             Margin="385,190,0,0" />
+                             Text="{Binding Path=cur_monster.gene4}" VerticalAlignment="Top" Width="127"
+                             Margin="338,147,0,0" />
                     <TextBox x:Name="textbox_gene5" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene5}" VerticalAlignment="Top" Width="80"
-                             Margin="505,190,0,0" />
+                             Text="{Binding Path=cur_monster.gene5}" VerticalAlignment="Top" Width="129"
+                             Margin="480,147,0,0" />
                     <TextBox x:Name="textbox_gene6" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene6}" VerticalAlignment="Top" Width="80"
-                             Margin="625,190,0,0" />
+                             Text="{Binding Path=cur_monster.gene6}" VerticalAlignment="Top" Width="128"
+                             Margin="626,147,0,0" />
                     <TextBox x:Name="textbox_gene7" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene7}" VerticalAlignment="Top" Width="80"
-                             Margin="385,260,0,0" />
+                             Text="{Binding Path=cur_monster.gene7}" VerticalAlignment="Top" Width="125"
+                             Margin="338,237,0,0" />
                     <TextBox x:Name="textbox_gene8" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene8}" VerticalAlignment="Top" Width="80"
-                             Margin="505,260,0,0" />
+                             Text="{Binding Path=cur_monster.gene8}" VerticalAlignment="Top" Width="129"
+                             Margin="480,237,0,0" />
                     <TextBox x:Name="textbox_gene9" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene9}" VerticalAlignment="Top" Width="80"
-                             Margin="625,260,0,0" />
+                             Text="{Binding Path=cur_monster.gene9}" VerticalAlignment="Top" Width="128"
+                             Margin="626,237,0,0" RenderTransformOrigin="0.55,-0.239" />
                     <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="150,85,0,0"
                            VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
                     <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="150,115,0,0"
@@ -247,14 +247,56 @@
                            HorizontalAlignment="Left" Margin="12,265,0,0" VerticalAlignment="Top" />
                     <Label x:Name="label_m_warn2" Content="The exact IV algorithm is unknown. Edit wisely."
                            HorizontalAlignment="Left" Margin="62,285,0,0" VerticalAlignment="Top" />
-                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="385,16,0,0"
+                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="385,10,0,0"
                                TextWrapping="Wrap"
-                               Text="MHST Gene 101:&#x0a;0x0001 = Empty Slot&#x0a;0x0002 = No Slot&#x0a;For other gene codes, refer to the gene code mapping."
+                               Text="Thank mana_ran@gbatemp.net for gene translations :)"
                                VerticalAlignment="Top" />
                     <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="193,119,0,0"
                             VerticalAlignment="Top" Width="35" Click="button_mexp_Click" />
                     <Button x:Name="button_mdel" Content="Delete" HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top" Width="76" Click="button_mdel_Click"/>
                     <Label x:Name="label" Content="Don't delete monsters currently in your party." HorizontalAlignment="Left" Margin="60,30,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboBox_gene1" HorizontalAlignment="Left" Margin="336,89,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene1_selected}"/>
+                    <ComboBox x:Name="comboBox_gene2" HorizontalAlignment="Left" Margin="480,89,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene2_selected}"/>
+                    <ComboBox x:Name="comboBox_gene3" HorizontalAlignment="Left" Margin="625,89,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.488,0.068" Height="22" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene3_selected}"/>
+                    <ComboBox x:Name="comboBox_gene4" HorizontalAlignment="Left" Margin="338,179,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene4_selected}"/>
+                    <ComboBox x:Name="comboBox_gene5" HorizontalAlignment="Left" Margin="480,179,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene5_selected}"/>
+                    <ComboBox x:Name="comboBox_gene6" HorizontalAlignment="Left" Margin="625,179,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene6_selected}"/>
+                    <ComboBox x:Name="comboBox_gene7" HorizontalAlignment="Left" Margin="338,269,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene7_selected}"/>
+                    <ComboBox x:Name="comboBox_gene8" HorizontalAlignment="Left" Margin="480,269,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene8_selected}"/>
+                    <ComboBox x:Name="comboBox_gene9" HorizontalAlignment="Left" Margin="625,269,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene9_selected}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Talisman" Margin="0,0,0,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="datagrid_tali" HorizontalAlignment="Left" Margin="10,35,0,0"
+                              VerticalAlignment="Top" Height="271" Width="556" CanUserAddRows="False"
+                              AutoGenerateColumns="False" ItemsSource="{Binding Path=talismans}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="80" Binding="{Binding id}"
+                                                Header="ID" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="80" Binding="{Binding rarity}"
+                                                Header="Rarity" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="80" Binding="{Binding new_flag}"
+                                                Header="New?" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="80" Binding="{Binding equipped}"
+                                                Header="Equipped?" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="80" Binding="{Binding skill1}"
+                                                Header="Skill 1" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="*" Binding="{Binding skill2}"
+                                                Header="Skill 2" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label_tali_ack" Content="Thank 苹果菠萝与芒果@bbs.duowan.com for offsets :)" HorizontalAlignment="Left" Margin="468,4,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="button_tali_new" Content="New" IsEnabled="False" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="button_tali_delete" Content="Delete" IsEnabled="False" HorizontalAlignment="Left" Margin="100,7,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Label x:Name="label_tali_temp" Content="New/Delete coming soon..." HorizontalAlignment="Left" Margin="180,4,0,0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="label_tali_101" HorizontalAlignment="Left" Margin="571,35,0,0" TextWrapping="Wrap" Text="MHST Talisman 101:&#10;&#10;Rarity is the actual rarity in game minus 1, e.g. Rare 2 = Rarity 0x1.&#10;&#10;Skill 1 and Skill 2 seem to always begin with 4 or 5.&#10;&#10;Equipped can be either 0x4 (Equipped) or 0x0 (Not Equipped).&#10;&#10;Not entirely sure how IDs work. ID is not unique. 0x13E seems to display the actual names of the two skills the talisman has in game. Maybe use that by default but don't quote me on that..." VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -264,7 +306,7 @@
                 VerticalAlignment="Top" Width="74" Click="button_load_click" />
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="1046,415,-390,-95.5"
                   VerticalAlignment="Top" Width="100" />
-        <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="662,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
+        <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="716,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
     </Grid>
 </Window>
 

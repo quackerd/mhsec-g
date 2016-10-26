@@ -26,6 +26,7 @@ namespace MHSEC_G
             InitializeComponent();
             button_save.IsEnabled = false;
             Item.read_item_mappings();
+            Monster.read_gene_mapping();
             Array.Clear(dummy_data, 0, dummy_data.Length);
             this.Title = "MHSEC-G Ver " + get_app_version();
             view_model = new ViewModel(dummy_data);

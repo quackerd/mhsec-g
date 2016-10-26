@@ -9,6 +9,10 @@ namespace MHSEC_G
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        public List<string> gene_name
+        {
+            get { return Monster.GENE_NAME; }
+        }
 
         private readonly Model _model;
 
@@ -40,6 +44,13 @@ namespace MHSEC_G
             }
         }
 
+        private readonly ObservableCollection<Talisman> _talismans;
+
+        public ObservableCollection<Talisman> talismans
+        {
+            get { return _talismans; }
+        }
+
 
         private readonly List<Item> _items;
 
@@ -67,6 +78,7 @@ namespace MHSEC_G
             _monsters = new ObservableCollection<Monster>(Monster.read_all_monsters(_model));
             _cur_monster_selection = _monsters.ElementAt(0);
             _egg_fragments = EggFragment.read_all_egg_fragments(_model);
+            _talismans = Talisman.read_all_talismans(_model);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

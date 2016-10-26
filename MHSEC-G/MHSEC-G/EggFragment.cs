@@ -39,13 +39,13 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x0C)
+                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x0E)
                 {
                     Model.write_byte(_model.save_file, _offset + OFFSETR_EF_SPE, parsed);
                 }
                 else
                 {
-                    MessageBox.Show("Malformed Species value - must be at most 0xC", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Malformed Species value - must be at most 0xE", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 OnPropertyChanged(nameof(spe));
             }
