@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace MHSEC_G
 {
-    public class BugCheck
+    internal class BugCheck
     {
         public enum ErrorCode
         {
@@ -27,6 +27,11 @@ namespace MHSEC_G
             // Facility Monster
             MON_GENE_MAPPING_CORRUPTED = 0x31,
             MON_GENE_IDX_OVERFLOW = 0x32,
+
+            // Factility OffsetObject
+            OFFSET_OBJ_MODEL_NULL = 0x41,
+            OFFSET_READ_OBJ_ARG_NULL = 0x42,
+            OFFSET_OBJ_MISMATCHED_TYPE = 0x43
         }
         public static void bug_check(ErrorCode error_code, string error_message)
         {

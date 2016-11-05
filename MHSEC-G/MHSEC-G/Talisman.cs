@@ -6,7 +6,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Talisman
+    internal class Talisman
     {
         private const uint OFFSETA_TALI = 0x7210;
         private const uint OFFSETA_TALI_END = 0x978F;

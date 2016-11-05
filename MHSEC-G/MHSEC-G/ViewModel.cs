@@ -7,7 +7,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class ViewModel : INotifyPropertyChanged
+    internal class ViewModel : INotifyPropertyChanged
     {
         public List<string> gene_name
         {
@@ -26,6 +26,13 @@ namespace MHSEC_G
         public Character character
         {
             get { return _character; }
+        }
+
+        private readonly ObservableCollection<Armor> _armors;
+
+        public ObservableCollection<Armor> armors
+        {
+            get { return _armors; }
         }
 
         private Monster _cur_monster_selection;
@@ -51,6 +58,19 @@ namespace MHSEC_G
             get { return _talismans; }
         }
 
+        private readonly ObservableCollection<Egg> _eggs;
+
+        public ObservableCollection<Egg> eggs
+        {
+            get { return _eggs; }
+        }
+
+        private readonly ObservableCollection<Weapon> _weapons;
+
+        public ObservableCollection<Weapon> weapons
+        {
+            get { return _weapons; }
+        }
 
         private readonly List<Item> _items;
 
@@ -79,6 +99,9 @@ namespace MHSEC_G
             _cur_monster_selection = _monsters.ElementAt(0);
             _egg_fragments = EggFragment.read_all_egg_fragments(_model);
             _talismans = Talisman.read_all_talismans(_model);
+            _weapons = Weapon.read_all_weapons(_model);
+            _armors = Armor.read_all_armors(_model);
+            _eggs = Egg.read_all_eggs(_model);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

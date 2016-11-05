@@ -9,7 +9,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Monster : INotifyPropertyChanged
+    internal class Monster : INotifyPropertyChanged
     {
         public static readonly List<uint> GENE_ID = new List<uint>();
         public static readonly List<string> GENE_NAME = new List<string>();
@@ -26,6 +26,7 @@ namespace MHSEC_G
         private const uint OFFSETR_MONSTER_HPU = 0xD4;
         private const uint OFFSETR_MONSTER_APU = 0xD5;
         private const uint OFFSETR_MONSTER_DPU = 0xD6;
+        private const uint OFFSETR_MONSTER_SKILL = 0x38;
         private const uint OFFSETR_MONSTER_LEVEL = 0x5C;
         private const uint LIMIT_MONSTER_LEVEL = 99;
         private const uint OFFSETR_MONSTER_NAME = 0;
@@ -278,6 +279,26 @@ namespace MHSEC_G
                 }
                 OnPropertyChanged(nameof(level));
                 OnPropertyChanged(nameof(full_name));
+            }
+        }
+
+        public string skill
+        {
+            get { return Model.byte_to_uint16_le(_model.save_file, offset + OFFSETR_MONSTER_SKILL).ToString("X4"); }
+            set
+            {
+                uint parsed;
+                if (Model.parse_hex_string(value, out parsed))
+                {
+                    Model.write_uint16_le(_model.save_file, offset + OFFSETR_MONSTER_SKILL, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed skill value - must be 0x0 to 0xFFFF.", "Error", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+
+                OnPropertyChanged(nameof(skill));
             }
         }
 
@@ -566,7 +587,7 @@ namespace MHSEC_G
             List<Monster> ret = new List<Monster>();
             for (uint i = OFFSETA_MONSTER; i < OFFSETA_MONSTE_END; i += SIZE_MONSTER)
             {
-                if (save[i] != 0)
+                if (Model.read_unicode_string(save, i, LIMIT_MONSTER_NAME).Length != 0)
                 {
                     byte[] each = new byte[SIZE_MONSTER];
                     Array.Copy(save, i, each, 0, SIZE_MONSTER);

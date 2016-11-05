@@ -6,7 +6,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class EggFragment : INotifyPropertyChanged
+    internal class EggFragment : INotifyPropertyChanged
     {
         private const uint OFFSETA_EGG_FRAGMENTS = 0x9790;
         private const uint OFFSETA_EGG_FRAGMENTS_END = 0x9C3F;

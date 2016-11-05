@@ -81,8 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Armor.cs" />
     <Compile Include="BugCheck.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Egg.cs" />
     <Compile Include="EggFragment.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Model.cs" />
@@ -95,6 +97,7 @@
     </Compile>
     <Compile Include="Talisman.cs" />
     <Compile Include="ViewModel.cs" />
+    <Compile Include="Weapon.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -4,7 +4,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Character : INotifyPropertyChanged
+    internal class Character : INotifyPropertyChanged
     {
         private const uint OFFSETA_CHAR_NAME = 0x9DA0;
         private const uint LENGTH_CHAR_NAME = 6;
