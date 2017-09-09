@@ -9,7 +9,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    internal class Armor : INotifyPropertyChanged
+    public class Armor : INotifyPropertyChanged
     {
         private const uint OFFSETA_ARM = 0x55F0;
         private const uint OFFSETA_ARM_END = 0x720E;
@@ -23,6 +23,7 @@ namespace MHSEC_G
 
         private readonly uint _offset;
         private readonly Model _model;
+        public uint index => (_offset - OFFSETA_ARM) / SIZE_ARM + 1;
 
         public Armor(Model model, uint offset)
         {
@@ -80,7 +81,7 @@ namespace MHSEC_G
                 uint parsed;
                 if (Model.parse_hex_string(value, out parsed))
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_ARM_14h, parsed);
+                    Model.write_uint32_le(_model.save_file, _offset + OFFSETR_ARM_14h, parsed);
                 }
                 else
                 {
@@ -141,10 +142,6 @@ namespace MHSEC_G
             ObservableCollection<Armor> ret = new ObservableCollection<Armor>();
             for (uint i = OFFSETA_ARM; i < OFFSETA_ARM_END; i += SIZE_ARM)
             {
-                if (Model.byte_to_uint16_le(model.save_file, i) == 0x7FFF)
-                {
-                    continue;
-                }
                 ret.Add(new Armor(model, i));
             }
             return ret;

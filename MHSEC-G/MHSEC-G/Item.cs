@@ -8,7 +8,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    internal class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged
     {
         private static readonly uint OFFSETA_ITEM_BOX = 0x10;
         private static readonly uint SIZE_ITEM = 0x8;

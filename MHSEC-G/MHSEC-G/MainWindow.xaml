@@ -5,38 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MHSEC_G"
         mc:Ignorable="d"
-        Title="" Height="447.855" Width="810.218" ResizeMode="NoResize" Icon="Resources/MainIcon.ico">
-    <Grid HorizontalAlignment="Left" Width="800" Margin="0,0,0,-0.5">
+        Title="" Height="447.855" Width="474.968" ResizeMode="NoResize" Icon="Resources/MainIcon.ico">
+    <Grid HorizontalAlignment="Left" Width="465" Margin="0,0,0,-0.5">
 
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="344" Margin="10,51,0,0"
-                    VerticalAlignment="Top" Width="780">
-            <TabItem Header="Character/Items">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="375" Margin="10,35,0,0"
+                    VerticalAlignment="Top" Width="443">
+            <TabItem Header="Character">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <Label x:Name="label_name" Content="Name" HorizontalAlignment="Left" Margin="10,42,0,0"
+                    <Label x:Name="label_name" Content="Name" HorizontalAlignment="Left" Margin="14,10,0,0"
                            VerticalAlignment="Top" />
-                    <Label x:Name="label_money" Content="Money" HorizontalAlignment="Left" Margin="4,69,0,0"
+                    <Label x:Name="label_money" Content="Money" HorizontalAlignment="Left" Margin="10,41,0,0"
+                           VerticalAlignment="Top" RenderTransformOrigin="0.957,0.5" />
+                    <Label x:Name="label_leve" Content="Level" HorizontalAlignment="Left" Margin="18,70,0,0"
                            VerticalAlignment="Top" />
-                    <Label x:Name="label_leve" Content="Level" HorizontalAlignment="Left" Margin="14,95,0,0"
+                    <Label x:Name="label_exp" Content="Exp" HorizontalAlignment="Left" Margin="26,99,0,0"
                            VerticalAlignment="Top" />
-                    <Label x:Name="label_exp" Content="Exp" HorizontalAlignment="Left" Margin="22,121,0,0"
-                           VerticalAlignment="Top" />
-                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="61,44,0,0"
+                    <TextBox x:Name="textbox_name" HorizontalAlignment="Left" Height="22" Margin="56,14,0,0"
                              TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.name}" />
-                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="61,72,0,0"
+                    <TextBox x:Name="textbox_money" HorizontalAlignment="Left" Height="22" Margin="56,45,0,0"
                              TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.money}" />
-                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="61,99,0,0"
+                    <TextBox x:Name="textbox_level" HorizontalAlignment="Left" Height="22" Margin="56,74,0,0"
                              TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.level}" />
-                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="61,126,0,0"
+                    <TextBox x:Name="textbox_exp" HorizontalAlignment="Left" Height="22" Margin="56,103,0,0"
                              TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Text="{Binding character.exp}" />
                     <Button x:Name="button_char_money" Content="Max Money" HorizontalAlignment="Left"
-                            Margin="200,73,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953"
+                            Margin="190,45,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953"
                             Height="22" Click="button_char_money_Click" />
-                    <Button x:Name="button_char_exp" Content="Max Exp" HorizontalAlignment="Left" Margin="200,126,0,0"
+                    <Button x:Name="button_char_exp" Content="Max Exp" HorizontalAlignment="Left" Margin="190,103,0,0"
                             VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.065,-0.953" Height="22"
                             Click="button_char_exp_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Items">
+                <Grid Background="#FFE5E5E5" HorizontalAlignment="Left" Width="442" Margin="0,0,-5,0">
                     <DataGrid x:Name="item_table_Copy" ItemsSource="{Binding items}" HorizontalAlignment="Left"
-                        Margin="349,44,0,0" VerticalAlignment="Top" Height="258" Width="415"
-                        CanUserAddRows="False" AutoGenerateColumns="False">
+                        Margin="10,48,0,0" VerticalAlignment="Top" Height="269" Width="415"
+                        CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="80" Foreground="Gray" IsReadOnly="True" Binding="{Binding offset, StringFormat=\{0:X4\}}"
@@ -53,273 +57,153 @@
                                 Header="Count" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_item_all_Copy" Content="All 986x" HorizontalAlignment="Left" Margin="579,6,0,0"
+                    <Button x:Name="button_item_all_Copy" Content="All 986x" HorizontalAlignment="Left" Margin="10,10,0,0"
                         VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.065,-0.953" Height="30"
                         Click="button_item_all_Click" />
                     <Button x:Name="button_item_existing_Copy" Content="Existing 999x" HorizontalAlignment="Left"
-                        Margin="674,6,0,0" VerticalAlignment="Top" Width="90"
+                        Margin="105,10,0,0" VerticalAlignment="Top" Width="90"
                         RenderTransformOrigin="0.065,-0.953" Height="30" Click="button_item_existing_Click" />
-                    <Label x:Name="label_items" Content="Items" HorizontalAlignment="Left" Margin="349,6,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <Label x:Name="label_character" Content="Character" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="18"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Eggs/Fragments">
+            <TabItem Header="Egg Fragments">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="244*"/>
-                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="egg_frag_grid" HorizontalAlignment="Left" Margin="10,35,0,0"
-                              VerticalAlignment="Top" Height="271" Width="361" CanUserAddRows="False"
-                              AutoGenerateColumns="False" ItemsSource="{Binding Path=egg_fragments}">
+                    <DataGrid x:Name="egg_frag_grid" HorizontalAlignment="Left" Margin="10,10,0,0"
+                              VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
+                              AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=egg_fragments}">
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="60" Binding="{Binding spe}"
+                                                Width="50" Binding="{Binding idx}"
+                                                Header="Index" IsReadOnly="True"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="50" Binding="{Binding spe}"
                                                 Header="Species" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="60" Binding="{Binding pos}"
                                                 Header="Position" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="40" Binding="{Binding new_flag}"
-                                                Header="New?" />
+                                                Header="New" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="40" Binding="{Binding rarity}"
                                                 Header="Rarity" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="40" Binding="{Binding color}"
+                                                Width="*" Binding="{Binding color}"
                                                 Header="Color" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="40" Binding="{Binding dlc}"
+                                                Width="*" Binding="{Binding dlc}"
                                                 Header="DLC" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="40" Binding="{Binding unknown_7h}"
+                                                Width="*" Binding="{Binding unknown_7h}"
                                                 Header="0x6" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="*" Binding="{Binding unknown_6h}"
                                                 Header="0x7" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_give_dino" Content="Give Dinovaldo" HorizontalAlignment="Left"
-                            Margin="385,175,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_dino_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_epony" Content="Give Epony" HorizontalAlignment="Left"
-                            Margin="385,35,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_epony_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_bear" Content="Give Mascot" HorizontalAlignment="Left"
-                            Margin="385,70,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_bear_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_mtiggy" Content="Give Molten Tigrex" HorizontalAlignment="Left"
-                            Margin="385,105,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_mtiggy_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_okirin" Content="Give Oroshi Kirin" HorizontalAlignment="Left"
-                            Margin="385,140,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_okirin_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_pd" Content="Give Puzzle Dragon" HorizontalAlignment="Left"
-                            Margin="385,210,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_pd_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_give_wm" Content="Give W. Monoblos" HorizontalAlignment="Left"
-                            Margin="385,245,0,0" VerticalAlignment="Top" Width="110" Height="30"
-                            Click="button_give_wm_Click" Grid.ColumnSpan="2" />
-                    <Button x:Name="button_eggf_new" IsEnabled="False" Content="New" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button x:Name="button_eggf_delete" IsEnabled="False" Content="Delete" HorizontalAlignment="Left" Margin="296,10,0,0" VerticalAlignment="Top" Width="75"/>
-                    <DataGrid x:Name="egg_grid" HorizontalAlignment="Left" Margin="39,35,0,0"
-                        VerticalAlignment="Top" Height="271" Width="237" CanUserAddRows="False"
-                        AutoGenerateColumns="False" ItemsSource="{Binding eggs}" Grid.Column="1">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Eggs">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="egg_grid" HorizontalAlignment="Left" Margin="10,30,0,0"
+                        VerticalAlignment="Top" Height="287" Width="417" CanUserAddRows="False"
+                        AutoGenerateColumns="False" ItemsSource="{Binding eggs}" SelectionMode="Single">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <EventSetter Event="MouseDoubleClick" Handler="Egg_grid_OnMouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="100" Binding="{Binding spe}"
-                                Header="Species" />
+                                                Width="40" Binding="{Binding index}"
+                                                Header="Index" IsReadOnly="True"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Width="*" Binding="{Binding spe}"
+                                Header="Hatched Monster Type" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding wgt}"
                                 Header="Weight" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="label1" Content="Eggs" Grid.Column="1" HorizontalAlignment="Left" Margin="39,1,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <Label x:Name="label1_Copy" Content="Egg Fragments" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="18"/>
+                    <Label x:Name="label_monster_Copy" Content="Double-click an entry to edit genes." HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
+                    <Button x:Name="button_eggs_delete" Content="Delete" HorizontalAlignment="Left" Margin="353,5,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_delete_Click"/>
+                    <Button x:Name="button_eggs_dummy" Content="Set Dummy Egg" HorizontalAlignment="Left" Margin="240,5,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_dummy_Click"/>
+
                 </Grid>
             </TabItem>
-
             <TabItem Header="Monsters" Margin="0,0,0,0">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label_mhp" Content="HP" HorizontalAlignment="Left" Margin="10,85,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mat" Content="Atk" HorizontalAlignment="Left" Margin="10,115,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mdf" Content="Def" HorizontalAlignment="Left" Margin="10,145,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mhiv" Content="IV-HP" HorizontalAlignment="Left" Margin="10,175,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mdiv" Content="IV-Atk" HorizontalAlignment="Left" Margin="10,205,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_maiv" Content="IV-Def" HorizontalAlignment="Left" Margin="10,235,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mhpu" Content="PowerUp-HP" HorizontalAlignment="Left" Margin="150,175,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mapu" Content="PowerUp-Atk" HorizontalAlignment="Left" Margin="150,205,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="150,235,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-                    <Label x:Name="label_mgen1" Content="Gene 1 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="364,31,0,0" />
-                    <Label x:Name="label_mgen2" Content="Gene 2 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,31,0,0" />
-                    <Label x:Name="label_mgen3" Content="Gene 3 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="652,31,0,0" RenderTransformOrigin="0.537,0.19" />
-                    <Label x:Name="label_mgen4" Content="Gene 4 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="364,117,0,0" />
-                    <Label x:Name="label_mgen5" Content="Gene 5 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,117,0,0" RenderTransformOrigin="0.524,0.439" />
-                    <Label x:Name="label_mgen6" Content="Gene 6 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="652,117,0,0" />
-                    <Label x:Name="label_mgen7" Content="Gene 7 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="364,205,0,0" />
-                    <Label x:Name="label_mgen8" Content="Gene 8 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="505,207,0,0" />
-                    <Label x:Name="label_mgen9" Content="Gene 9 (Hex)" HorizontalAlignment="Left"
-                           VerticalAlignment="Top" Margin="652,207,0,0" />
-                    <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="60,87,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hp}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mat" HorizontalAlignment="Left" Height="23" Margin="60,117,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.atk}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mdf" HorizontalAlignment="Left" Height="23" Margin="60,147,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.def}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mhiv" HorizontalAlignment="Left" Height="23" Margin="60,177,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hiv}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_maiv" HorizontalAlignment="Left" Height="23" Margin="60,207,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.aiv}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mdiv" HorizontalAlignment="Left" Height="23" Margin="60,237,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.div}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mhpu" HorizontalAlignment="Left" Height="23" Margin="240,177,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.hpu}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mapu" HorizontalAlignment="Left" Height="23" Margin="240,207,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.apu}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,237,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.dpu}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene1}" VerticalAlignment="Top" Width="129"
-                             Margin="336,58,0,0" />
-                    <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene2}" VerticalAlignment="Top" Width="129"
-                             Margin="480,58,0,0" />
-                    <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene3}" VerticalAlignment="Top" Width="129"
-                             Margin="625,58,0,0" />
-                    <TextBox x:Name="textbox_gene4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene4}" VerticalAlignment="Top" Width="127"
-                             Margin="338,147,0,0" />
-                    <TextBox x:Name="textbox_gene5" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene5}" VerticalAlignment="Top" Width="129"
-                             Margin="480,147,0,0" />
-                    <TextBox x:Name="textbox_gene6" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene6}" VerticalAlignment="Top" Width="128"
-                             Margin="626,147,0,0" />
-                    <TextBox x:Name="textbox_gene7" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene7}" VerticalAlignment="Top" Width="125"
-                             Margin="338,237,0,0" />
-                    <TextBox x:Name="textbox_gene8" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene8}" VerticalAlignment="Top" Width="129"
-                             Margin="480,237,0,0" />
-                    <TextBox x:Name="textbox_gene9" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                             Text="{Binding Path=cur_monster.gene9}" VerticalAlignment="Top" Width="128"
-                             Margin="626,237,0,0" RenderTransformOrigin="0.55,-0.239" />
-                    <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="191,84,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-                    <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="150,115,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-                    <Label x:Name="label_spe" Content="Species (Hex)" HorizontalAlignment="Left" Margin="150,145,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-                    <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,87,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.level}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_mex" HorizontalAlignment="Left" Height="24" Margin="240,117,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.exp}" VerticalAlignment="Top"
-                             Width="75" />
-                    <TextBox x:Name="textbox_spe" HorizontalAlignment="Left" Height="24" Margin="240,147,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.spe, StringFormat={}{0:X2}}" VerticalAlignment="Top"
-                             Width="75"/>
-                    <Label x:Name="label_mname" Content="Name" HorizontalAlignment="Left" Margin="10,54,0,0"
-                           VerticalAlignment="Top" />
-                    <TextBox x:Name="textbox_mname" HorizontalAlignment="Left" Height="22" Margin="60,58,0,0"
-                             TextWrapping="Wrap" Text="{Binding Path=cur_monster.name}" VerticalAlignment="Top"
-                             Width="118" />
-                    <Label x:Name="label_slct" Content="Monster" HorizontalAlignment="Left" Margin="2,10,0,0"
-                           VerticalAlignment="Top" RenderTransformOrigin="0.466,0.596" />
-                    <ComboBox x:Name="combobox_slct" HorizontalAlignment="Left" Margin="60,10,0,0"
-                              VerticalAlignment="Top" Width="168" ItemsSource="{Binding Path=monsters}"
-                              DisplayMemberPath="full_name" IsReadOnly="True"
-                              SelectedValue="{Binding Path=cur_monster}" />
-                    <Label x:Name="label_m_warn" Content="Warning: The sum of PowerUps should be at most 10."
-                           HorizontalAlignment="Left" Margin="12,265,0,0" VerticalAlignment="Top" />
-                    <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="338,10,0,0"
-                               TextWrapping="Wrap"
-                               Text="Do NOT use genes that start with &quot;[D]&quot; They are potentially game-crashing."
-                               VerticalAlignment="Top" />
-                    <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="193,119,0,0"
-                            VerticalAlignment="Top" Width="35" Click="button_mexp_Click" />
-                    <Button x:Name="button_mdel" Content="Delete" HorizontalAlignment="Left" Margin="239,10,0,0" VerticalAlignment="Top" Width="76" Click="button_mdel_Click"/>
-                    <Label x:Name="label" Content="Don't delete monsters currently in your party." HorizontalAlignment="Left" Margin="60,30,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="comboBox_gene1" HorizontalAlignment="Left" Margin="336,89,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene1_selected}"/>
-                    <ComboBox x:Name="comboBox_gene2" HorizontalAlignment="Left" Margin="480,89,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene2_selected}"/>
-                    <ComboBox x:Name="comboBox_gene3" HorizontalAlignment="Left" Margin="625,89,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.488,0.068" Height="22" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene3_selected}"/>
-                    <ComboBox x:Name="comboBox_gene4" HorizontalAlignment="Left" Margin="338,179,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene4_selected}"/>
-                    <ComboBox x:Name="comboBox_gene5" HorizontalAlignment="Left" Margin="480,179,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene5_selected}"/>
-                    <ComboBox x:Name="comboBox_gene6" HorizontalAlignment="Left" Margin="625,179,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene6_selected}"/>
-                    <ComboBox x:Name="comboBox_gene7" HorizontalAlignment="Left" Margin="338,269,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene7_selected}"/>
-                    <ComboBox x:Name="comboBox_gene8" HorizontalAlignment="Left" Margin="480,269,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene8_selected}"/>
-                    <ComboBox x:Name="comboBox_gene9" HorizontalAlignment="Left" Margin="625,269,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding gene_name}" SelectedIndex="{Binding Path=cur_monster.gene9_selected}"/>
-                    <Label x:Name="label_mon_skill" Content="Skill (X)" HorizontalAlignment="Left" Margin="184,54,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textbox_mon_skill" HorizontalAlignment="Left" Height="24" Margin="240,58,0,0"
-                        TextWrapping="Wrap" Text="{Binding cur_monster.skill}" VerticalAlignment="Top"
-                        Width="75" />
+                    <DataGrid x:Name="monster_grid" HorizontalAlignment="Left" Margin="10,24,0,0" IsReadOnly="True"
+                        VerticalAlignment="Top" Height="293" Width="414" CanUserAddRows="False"
+                        AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding monsters}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <EventSetter Event="MouseDoubleClick" Handler="Monster_grid_OnMouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Width="40" Binding="{Binding box}"
+                                Header="Box"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Width="40" Binding="{Binding slot}"
+                                Header="Slot"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="250" Binding="{Binding name}"
+                                                Header="Name" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="*" Binding="{Binding level}"
+                                                Header="Level" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label x:Name="label_monster" Content="Double-click an entry to edit." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Talismans" Margin="0,0,0,0">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="datagrid_tali" HorizontalAlignment="Left" Margin="10,35,0,0"
-                              VerticalAlignment="Top" Height="271" Width="556" CanUserAddRows="False"
-                              AutoGenerateColumns="False" ItemsSource="{Binding Path=talismans}">
+                    <DataGrid x:Name="datagrid_tali" HorizontalAlignment="Left" Margin="10,10,0,0"
+                              VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
+                              AutoGenerateColumns="False" ItemsSource="{Binding Path=talismans}" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="80" Binding="{Binding id}"
+                                                Width="40" Binding="{Binding index}"
+                                                Header="Index" IsReadOnly="True" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="40" Binding="{Binding id}"
                                                 Header="ID" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="80" Binding="{Binding rarity}"
+                                                Width="40" Binding="{Binding rarity}"
                                                 Header="Rarity" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="80" Binding="{Binding new_flag}"
-                                                Header="New?" />
+                                                Width="40" Binding="{Binding new_flag}"
+                                                Header="New" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="80" Binding="{Binding equipped}"
-                                                Header="Equipped?" />
+                                                Width="70" Binding="{Binding equipped}"
+                                                Header="Equipped" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="80" Binding="{Binding skill1}"
+                                                Width="*" Binding="{Binding skill1}"
                                                 Header="Skill 1" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="*" Binding="{Binding skill2}"
                                                 Header="Skill 2" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_tali_new" Content="New" IsEnabled="False" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button x:Name="button_tali_delete" Content="Delete" IsEnabled="False" HorizontalAlignment="Left" Margin="100,7,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Weapons/Armors" Margin="0,0,0,0">
+            <TabItem Header="Weapons" Margin="0,0,0,0">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="datagrid_wpn" HorizontalAlignment="Left" Margin="10,35,0,0"
-                              VerticalAlignment="Top" Height="271" Width="272" CanUserAddRows="False"
-                              AutoGenerateColumns="False" ItemsSource="{Binding weapons}">
+                    <DataGrid x:Name="datagrid_wpn" HorizontalAlignment="Left" Margin="10,10,0,0"
+                              VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
+                              AutoGenerateColumns="False" ItemsSource="{Binding weapons}" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="40" Binding="{Binding index}"
+                                                Header="Index" IsReadOnly="True"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="80" Binding="{Binding clazz}"
                                                 Header="Class" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
@@ -330,29 +214,34 @@
                                                 Header="Level" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="label_wa_wpn" Content="Weapons" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="18"/>
-                    <DataGrid x:Name="datagrid_wa_armor" HorizontalAlignment="Left" Margin="355,35,0,0"
-                        VerticalAlignment="Top" Height="271" Width="409" CanUserAddRows="False"
-                        AutoGenerateColumns="False" ItemsSource="{Binding armors}">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Armors" Margin="0,0,0,0">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="datagrid_wa_armor" HorizontalAlignment="Left" Margin="10,10,0,0"
+                        VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
+                        AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding armors}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
-                                Width="60" Binding="{Binding id}"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="40" Binding="{Binding index}"
+                                                Header="Index" IsReadOnly="True"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Width="50" Binding="{Binding id}"
                                 Header="ID" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="60" Binding="{Binding level}"
+                                Width="50" Binding="{Binding level}"
                                 Header="Level" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding unknown_14h}"
-                                Header="Unknown 14h" />
+                                Header="Color1 (RGB)" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding unknown_18h}"
-                                Header="Unknown 18h" />
+                                Header="Color2 (RGB)" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding unknown_1ch}"
                                 Header="Unknown 1Ch" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="label_wa_armor" Content="Armors" HorizontalAlignment="Left" Margin="355,1,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="4.647,1.074"/>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -360,10 +249,7 @@
                 VerticalAlignment="Top" Width="74" Click="button_save_Click" />
         <Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="90,10,0,0"
                 VerticalAlignment="Top" Width="74" Click="button_load_click" />
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="100" Margin="1046,415,-390,-95.5"
-                  VerticalAlignment="Top" Width="100" />
-        <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="716,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
-        <Label x:Name="label_notes" Content="Please read the notes on the forum as they contain important information regarding editing." HorizontalAlignment="Left" Margin="217,7,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
     </Grid>
 </Window>
 

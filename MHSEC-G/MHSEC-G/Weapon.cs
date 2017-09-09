@@ -6,7 +6,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    internal class Weapon : INotifyPropertyChanged
+    public class Weapon : INotifyPropertyChanged
     {
         private const int OFFSETA_WEAPON_START = 0x39D0;
         private const int OFFSETA_WEAPON_END = 0x55EF;
@@ -19,6 +19,7 @@ namespace MHSEC_G
 
         private readonly uint _offset;
         private readonly Model _model;
+        public uint index => (_offset - OFFSETA_WEAPON_START) / SIZE_WEAPON + 1;
 
         public Weapon(Model model, uint offset)
         {
@@ -95,10 +96,6 @@ namespace MHSEC_G
             ObservableCollection<Weapon> ret = new ObservableCollection<Weapon>();
             for (uint i = OFFSETA_WEAPON_START; i < OFFSETA_WEAPON_END; i += SIZE_WEAPON)
             {
-                if (Model.byte_to_uint16_le(model.save_file, i + OFFSETR_CLASS) == 0x7FFF)
-                {
-                    continue;
-                }
                 ret.Add(new Weapon(model, i));
             }
             return ret;

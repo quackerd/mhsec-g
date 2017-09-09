@@ -6,7 +6,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    internal class EggFragment : INotifyPropertyChanged
+    public class EggFragment : INotifyPropertyChanged
     {
         private const uint OFFSETA_EGG_FRAGMENTS = 0x9790;
         private const uint OFFSETA_EGG_FRAGMENTS_END = 0x9C3F;
@@ -21,6 +21,7 @@ namespace MHSEC_G
         private const uint OFFSETR_EF_7H = 0x7;
 
         private readonly uint _offset;
+        public uint idx => (_offset - OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT + 1;
 
         public uint offset
         {
@@ -182,8 +183,6 @@ namespace MHSEC_G
             byte[] buffer = model.save_file;
             for (uint offset = OFFSETA_EGG_FRAGMENTS; offset < OFFSETA_EGG_FRAGMENTS_END; offset += SIZE_EGG_FRAGMENT)
             {
-                if(buffer[offset] == 0)
-                    continue;
                 ret.Add(new EggFragment(offset, model));
             }
             return ret;
@@ -218,7 +217,6 @@ namespace MHSEC_G
                 each_frag.dlc = dlc.ToString("X2");
                 each_frag.unknown_6h = "0";
                 each_frag.unknown_7h = "0";
-                
             }
         }
 

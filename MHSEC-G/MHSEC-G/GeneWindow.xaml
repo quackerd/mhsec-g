@@ -1,0 +1,72 @@
+﻿<Window x:Class="MHSEC_G.GeneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MHSEC_G"
+        mc:Ignorable="d"
+        Title="Gene Editor" Height="306.875" Width="471.214" ResizeMode="NoResize">
+    <Grid Height="278" VerticalAlignment="Top">
+        <Grid Background="#FFE5E5E5" Height="280" VerticalAlignment="Top">
+            <Label x:Name="label_mgen1" Content="Gene 1 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="35,27,0,0" RenderTransformOrigin="0.474,0.808" />
+            <Label x:Name="label_mgen2" Content="Gene 2 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="185,27,0,0" />
+            <Label x:Name="label_mgen3" Content="Gene 3 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="336,27,0,0" RenderTransformOrigin="0.537,0.19" />
+            <Label x:Name="label_mgen4" Content="Gene 4 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="35,112,0,0" />
+            <Label x:Name="label_mgen5" Content="Gene 5 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="185,112,0,0" RenderTransformOrigin="0.524,0.439" />
+            <Label x:Name="label_mgen6" Content="Gene 6 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="336,112,0,0" />
+            <Label x:Name="label_mgen7" Content="Gene 7 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="35,189,0,0" />
+            <Label x:Name="label_mgen8" Content="Gene 8 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="185,189,0,0" RenderTransformOrigin="-3.481,0.038" />
+            <Label x:Name="label_mgen9" Content="Gene 9 (Hex)" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="336,189,0,0" />
+            <TextBox x:Name="textbox_gene1" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                Text="{Binding genes.gene1}" VerticalAlignment="Top" Width="129"
+                Margin="10,58,0,0" />
+            <TextBox x:Name="textbox_gene2" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                Text="{Binding genes.gene2}" VerticalAlignment="Top" Width="128"
+                Margin="164,58,0,0" />
+            <TextBox x:Name="textbox_gene3" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap"
+                Text="{Binding genes.gene3}" VerticalAlignment="Top" Width="129"
+                Margin="313,58,0,0" />
+            <TextBox x:Name="textbox_gene4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene4}" VerticalAlignment="Top" Width="127"
+                Margin="10,138,0,0" />
+            <TextBox x:Name="textbox_gene5" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene5}" VerticalAlignment="Top" Width="129"
+                Margin="164,138,0,0" />
+            <TextBox x:Name="textbox_gene6" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene6}" VerticalAlignment="Top" Width="128"
+                Margin="314,138,0,0" />
+            <TextBox x:Name="textbox_gene7" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene7}" VerticalAlignment="Top" Width="125"
+                Margin="10,214,0,0" />
+            <TextBox x:Name="textbox_gene8" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene8}" VerticalAlignment="Top" Width="129"
+                Margin="164,214,0,0" />
+            <TextBox x:Name="textbox_gene9" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                Text="{Binding genes.gene9}" VerticalAlignment="Top" Width="128"
+                Margin="314,214,0,0" RenderTransformOrigin="0.55,-0.239" />
+            <TextBlock x:Name="textblock_gene101" HorizontalAlignment="Left" Margin="10,10,0,0"
+                TextWrapping="Wrap"
+                Text="Do NOT use genes that start with &quot;[D]&quot; They are potentially game-crashing."
+                VerticalAlignment="Top" />
+            <ComboBox x:Name="comboBox_gene1" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene1_selected}"/>
+            <ComboBox x:Name="comboBox_gene2" HorizontalAlignment="Left" Margin="164,85,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene2_selected}"/>
+            <ComboBox x:Name="comboBox_gene3" HorizontalAlignment="Left" Margin="313,85,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene3_selected}"/>
+            <ComboBox x:Name="comboBox_gene4" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene4_selected}"/>
+            <ComboBox x:Name="comboBox_gene5" HorizontalAlignment="Left" Margin="164,166,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene5_selected}" RenderTransformOrigin="-1.663,0.932"/>
+            <ComboBox x:Name="comboBox_gene6" HorizontalAlignment="Left" Margin="314,166,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene6_selected}"/>
+            <ComboBox x:Name="comboBox_gene7" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="125" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene7_selected}"/>
+            <ComboBox x:Name="comboBox_gene8" HorizontalAlignment="Left" Margin="164,242,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene8_selected}"/>
+            <ComboBox x:Name="comboBox_gene9" HorizontalAlignment="Left" Margin="313,242,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding genes.gene_name}" SelectedIndex="{Binding genes.gene9_selected}"/>
+        </Grid>
+
+    </Grid>
+</Window>

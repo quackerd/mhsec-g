@@ -86,9 +86,16 @@
     <Compile Include="Character.cs" />
     <Compile Include="Egg.cs" />
     <Compile Include="EggFragment.cs" />
+    <Compile Include="Genes.cs" />
+    <Compile Include="GeneWindow.xaml.cs">
+      <DependentUpon>GeneWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Monster.cs" />
+    <Compile Include="MonsterWindow.xaml.cs">
+      <DependentUpon>MonsterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -96,8 +103,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Talisman.cs" />
-    <Compile Include="ViewModel.cs" />
     <Compile Include="Weapon.cs" />
+    <Page Include="GeneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MonsterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,6 +147,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\egg_dummy_template.bin" />
+    <None Include="Resources\egg_null_template.bin" />
     <None Include="Resources\monster_null_template.bin" />
   </ItemGroup>
   <ItemGroup>

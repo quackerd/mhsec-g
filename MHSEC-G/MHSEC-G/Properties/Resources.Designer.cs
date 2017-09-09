@@ -61,6 +61,26 @@ namespace MHSEC_G.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] egg_dummy_template {
+            get {
+                object obj = ResourceManager.GetObject("egg_dummy_template", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] egg_null_template {
+            get {
+                object obj = ResourceManager.GetObject("egg_null_template", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0001	Empty Slot
         ///0002	No Slot
         ///0003	アプトノス遺伝子
@@ -108,27 +128,27 @@ namespace MHSEC_G.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10	1	药草
-        ///18	2	回复药
-        ///20	3	回复G
-        ///28	4	回复粉
-        ///30	5	生命粉
-        ///38	6	生命大粉
-        ///40	7	秘药
-        ///48	16	气合のカタマリ
-        ///50	9	活力剂
-        ///58	8	いにしえの秘药
-        ///60	A	解毒草
-        ///68	B	解毒药
+        ///   Looks up a localized string similar to 10	1	薬草
+        ///18	2	回復薬
+        ///20	3	回復薬グレート
+        ///28	4	回復の粉
+        ///30	5	生命の粉塵
+        ///38	6	生命の大粉塵
+        ///40	7	秘薬
+        ///48	16	気合のカタマリ
+        ///50	9	活力剤
+        ///58	8	いにしえの秘薬
+        ///60	A	げどく草
+        ///68	B	解毒薬
         ///70	C	アロエ草
-        ///78	D	烧伤药
+        ///78	D	やけど薬
         ///80	E	マヒワリの花
-        ///88	F	麻痹药
+        ///88	F	マヒなおし薬
         ///90	10	トウガラシ
         ///98	11	元気ドリンコ
         ///A0	12	多肉ニンニク
         ///A8	13	熱血サプリ
-        ///B0	14	シャンボン菜
+        ///B0	14	シャボン菜
         ///B8	15	爆破落とし洗剤
         ///C0	18	メニーベリー
         ///C8	19	目薬
@@ -138,7 +158,7 @@ namespace MHSEC_G.Properties {
         ///E8	B0	こんがり肉
         ///F0	B1	マッスルミート
         ///F8	B2	タフネスミート
-        ///100	B3	クィックミート
+        ///100	B3	クイックミート
         ///108	B4	こんがり肉Ｇ
         ///110	1D	ハンタードーナツ
         ///118	1F	ロア・ル・リング
@@ -146,8 +166,7 @@ namespace MHSEC_G.Properties {
         ///128	21	ドスドーナツ
         ///130	24	ギルドーナツ
         ///138	25	アイルーシュガー
-        ///140	26	メラルーショコラ
-        ///148	27	こ [rest of string was truncated]&quot;;.
+        ///140	26	メラルーシ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string idmap {
             get {

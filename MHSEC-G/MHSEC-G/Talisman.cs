@@ -6,7 +6,7 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    internal class Talisman
+    public class Talisman
     {
         private const uint OFFSETA_TALI = 0x7210;
         private const uint OFFSETA_TALI_END = 0x978F;
@@ -19,6 +19,7 @@ namespace MHSEC_G
         private const uint OFFSETR_EQUIPPED = 0x11;
 
         private readonly uint _offset;
+        public uint index => (_offset - OFFSETA_TALI) / SIZE_TALI + 1;
 
         public uint offset
         {
@@ -143,11 +144,8 @@ namespace MHSEC_G
         public static ObservableCollection<Talisman> read_all_talismans(Model model)
         {
             ObservableCollection<Talisman> ret = new ObservableCollection<Talisman>();
-            byte[] buffer = model.save_file;
             for (uint offset = OFFSETA_TALI; offset < OFFSETA_TALI_END; offset += SIZE_TALI)
             {
-                if (Model.byte_to_uint16_le(buffer, offset + OFFSETR_TALI_ID)  == 0)
-                    continue;
                 ret.Add(new Talisman(offset, model));
             }
             return ret;

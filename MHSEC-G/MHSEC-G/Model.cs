@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MHSEC_G
 {
-    internal class Model
+    public class Model
     {
         public const uint SAVE_FILE_SIZE = 483976;
 
