@@ -9,50 +9,23 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Monster : INotifyPropertyChanged
+    public class Monster : InMemoryObject
     {
-        public const uint LIMIT_MONSTER_EXP = 0xFFFFFF;
-        public const uint SIZE_MONSTER = 0x478;
-        private const uint OFFSETA_MONSTER = 0xA150;
-        private const uint OFFSETR_MONSTER_GENE = 0x424;
-        private const uint SIZE_MONSTER_GENE = 0x4;
-        private const uint OFFSETR_MONSTER_EXP = 0xE0;
-        private const uint OFFSETR_MONSTER_HIV = 0xD8;
-        private const uint OFFSETR_MONSTER_AIV = 0xD9;
-        private const uint OFFSETR_MONSTER_DIV = 0xDA;
-        private const uint OFFSETR_MONSTER_HPU = 0xD4;
-        private const uint OFFSETR_MONSTER_APU = 0xD5;
-        private const uint OFFSETR_MONSTER_DPU = 0xD6;
-        private const uint OFFSETR_MONSTER_SKILL = 0x38;
-        private const uint OFFSETR_MONSTER_LEVEL = 0x5C;
-        private const uint LIMIT_MONSTER_LEVEL = 99;
-        private const uint OFFSETR_MONSTER_NAME = 0;
-        private const uint LIMIT_MONSTER_NAME = 10;
-        private const uint OFFSETR_MONSTER_SPE = 0x30;
-        private const uint OFFSETA_MONSTE_END = 0x4786F;
-        private const uint OFFSETR_MONSTER_ATK = 0x48;
-        private const uint OFFSETR_MONSTER_HP = 0x46;
-        private const uint OFFSETR_MONSTER_DEF = 0x4A;
-
-        private readonly Model _model;
-
-        private readonly uint _offset;
-        public uint offset => _offset;
-        public uint box => (_offset - OFFSETA_MONSTER) / SIZE_MONSTER / 18 + 1;
-        public uint slot => (_offset - OFFSETA_MONSTER) / SIZE_MONSTER % 18 + 1;
+        public uint box => (_obj_offset - Offsets.OFFSETA_MONSTER) / Offsets.SIZE_MONSTER / 18 + 1;
+        public uint slot => (_obj_offset - Offsets.OFFSETA_MONSTER) / Offsets.SIZE_MONSTER % 18 + 1;
 
         private readonly Genes _genes;
         public Genes genes => _genes;
 
         public string spe
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_SPE]).ToString("X2");
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_SPE]).ToString("X2");
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_SPE] = (byte) (parsed & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_SPE] = (byte) (parsed & 0xFF);
                 }
                 else
                 {
@@ -65,12 +38,12 @@ namespace MHSEC_G
 
         public uint atk
         {
-            get => Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_ATK);
+            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_ATK);
             set
             {
                 if (value <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_ATK, value);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_ATK, value);
                 }
                 else
                 {
@@ -83,12 +56,12 @@ namespace MHSEC_G
 
         public uint def
         {
-            get => Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_DEF);
+            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_DEF);
             set
             {
                 if (value <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_DEF, value);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_DEF, value);
                 }
                 else
                 {
@@ -101,12 +74,12 @@ namespace MHSEC_G
 
         public uint hp
         {
-            get => Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_HP);
+            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_HP);
             set
             {
                 if (value <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_MONSTER_HP, value);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_HP, value);
                 }
                 else
                 {
@@ -119,12 +92,12 @@ namespace MHSEC_G
 
         public uint hiv
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_HIV]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_HIV]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_HIV] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_HIV] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -136,12 +109,12 @@ namespace MHSEC_G
 
         public uint aiv
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_AIV]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_AIV]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_AIV] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_AIV] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -153,12 +126,12 @@ namespace MHSEC_G
 
         public uint div
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_DIV]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_DIV]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_DIV] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_DIV] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -170,12 +143,12 @@ namespace MHSEC_G
 
         public uint hpu
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_HPU]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_HPU]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_HPU] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_HPU] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -188,12 +161,12 @@ namespace MHSEC_G
 
         public uint apu
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_APU]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_APU]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_APU] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_APU] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -206,12 +179,12 @@ namespace MHSEC_G
 
         public uint dpu
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_DPU]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_DPU]);
             set
             {
                 if (value <= 0xFF)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_DPU] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_DPU] = (byte) (value & 0xFF);
                 }
                 else
                 {
@@ -224,13 +197,13 @@ namespace MHSEC_G
 
         public string name
         {
-            get => Model.read_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, LIMIT_MONSTER_NAME);
+            get => Helper.read_unicode_string(_data, _obj_offset + Offsets.OFFSETR_MONSTER_NAME, Offsets.LIMIT_MONSTER_NAME);
             set
             {
                 if (value.Length <= 10 && value.Length > 0)
                 {
-                    Model.write_unicode_string(_model.save_file, _offset + OFFSETR_MONSTER_NAME, value,
-                        LIMIT_MONSTER_NAME);
+                    Helper.write_unicode_string(_data, _obj_offset + Offsets.OFFSETR_MONSTER_NAME, value,
+                        Offsets.LIMIT_MONSTER_NAME);
                 }
                 else
                 {
@@ -243,16 +216,16 @@ namespace MHSEC_G
 
         public uint exp
         {
-            get => Model.byte_to_uint32_le(_model.save_file, _offset + OFFSETR_MONSTER_EXP);
+            get => Helper.byte_to_uint32_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_EXP);
             set
             {
-                if (value <= LIMIT_MONSTER_EXP)
+                if (value <= Offsets.LIMIT_MONSTER_EXP)
                 {
-                    Model.write_uint32_le(_model.save_file, _offset + OFFSETR_MONSTER_EXP, value);
+                    Helper.write_uint32_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_EXP, value);
                 }
                 else
                 {
-                    MessageBox.Show("Exp must be at most " + LIMIT_MONSTER_EXP, "Error", MessageBoxButton.OK,
+                    MessageBox.Show("Exp must be at most " + Offsets.LIMIT_MONSTER_EXP, "Error", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
                 OnPropertyChanged(nameof(exp));
@@ -261,16 +234,16 @@ namespace MHSEC_G
 
         public uint level
         {
-            get => Model.byte_to_uint(_model.save_file[_offset + OFFSETR_MONSTER_LEVEL]);
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_LEVEL]);
             set
             {
-                if (value <= LIMIT_MONSTER_LEVEL)
+                if (value <= Offsets.LIMIT_MONSTER_LEVEL)
                 {
-                    _model.save_file[_offset + OFFSETR_MONSTER_LEVEL] = (byte) (value & 0xFF);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_LEVEL] = (byte) (value & 0xFF);
                 }
                 else
                 {
-                    MessageBox.Show("Level must be at most " + LIMIT_MONSTER_LEVEL, "Error", MessageBoxButton.OK,
+                    MessageBox.Show("Level must be at most " + Offsets.LIMIT_MONSTER_LEVEL, "Error", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
                 OnPropertyChanged(nameof(level));
@@ -279,13 +252,13 @@ namespace MHSEC_G
 
         public string skill
         {
-            get => Model.byte_to_uint16_le(_model.save_file, offset + OFFSETR_MONSTER_SKILL).ToString("X4");
+            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_SKILL).ToString("X4");
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed))
+                if (Helper.parse_hex_string(value, out parsed))
                 {
-                    Model.write_uint16_le(_model.save_file, offset + OFFSETR_MONSTER_SKILL, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_SKILL, parsed);
                 }
                 else
                 {
@@ -298,44 +271,20 @@ namespace MHSEC_G
         }
        
 
-        public Monster(uint offset, Model model)
+        public Monster(byte[] model, uint objOffset) : base(model, objOffset, Offsets.SIZE_MONSTER)
         {
-            _offset = offset;
-            _model = model;
-            _genes = new Genes(model, offset + OFFSETR_MONSTER_GENE, SIZE_MONSTER_GENE);
+            _genes = new Genes(model, objOffset + Offsets.OFFSETR_MONSTER_GENE, Offsets.SIZE_MONSTER_GENE);
         }
 
-        public static List<Monster> read_all_monsters(Model model)
+        public static List<Monster> read_all_monsters(byte[] model)
         {
-            byte[] save = model.save_file;
+            byte[] save = model;
             List<Monster> ret = new List<Monster>();
-            for (uint i = OFFSETA_MONSTER; i < OFFSETA_MONSTE_END; i += SIZE_MONSTER)
+            for (uint i = Offsets.OFFSETA_MONSTER; i < Offsets.OFFSETA_MONSTE_END; i += Offsets.SIZE_MONSTER)
             {
-                ret.Add(new Monster(i, model));
+                ret.Add(new Monster(model, i));
             }
             return ret;
-        }
-
-        public byte[] getByteArray()
-        {
-            byte[] ret = new byte[SIZE_MONSTER];
-            Array.Copy(_model.save_file, _offset, ret, 0, SIZE_MONSTER);
-            return ret;
-        }
-
-        public void setByteArray(byte[] ret)
-        {
-            Array.Copy(ret, 0, _model.save_file, _offset, SIZE_MONSTER);
-            OnPropertyChanged(null);
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

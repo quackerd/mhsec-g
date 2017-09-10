@@ -90,12 +90,14 @@
     <Compile Include="GeneWindow.xaml.cs">
       <DependentUpon>GeneWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InMemoryObject.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="MonsterWindow.xaml.cs">
       <DependentUpon>MonsterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Offsets.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

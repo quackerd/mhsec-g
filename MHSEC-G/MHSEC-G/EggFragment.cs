@@ -6,43 +6,23 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class EggFragment : INotifyPropertyChanged
+    public class EggFragment : InMemoryObject
     {
-        private const uint OFFSETA_EGG_FRAGMENTS = 0x9790;
-        private const uint OFFSETA_EGG_FRAGMENTS_END = 0x9C3F;
-        private const uint SIZE_EGG_FRAGMENT = 0xC;
-        private const uint OFFSETR_EF_SPE = 0x0;
-        private const uint OFFSETR_EF_POS = 0x1;
-        private const uint OFFSETR_EF_NEW = 0x2;
-        private const uint OFFSETR_EF_RAR = 0x3;
-        private const uint OFFSETR_EF_COL = 0x4;
-        private const uint OFFSETR_EF_DLC = 0x5;
-        private const uint OFFSETR_EF_6H = 0x6;
-        private const uint OFFSETR_EF_7H = 0x7;
+        public uint idx => (_obj_offset - Offsets.OFFSETA_EGG_FRAGMENTS) / Offsets.SIZE_EGG_FRAGMENT + 1;
 
-        private readonly uint _offset;
-        public uint idx => (_offset - OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT + 1;
-
-        public uint offset
+        public EggFragment(byte[] model, uint objOffset) : base(model, objOffset, Offsets.SIZE_EGG_FRAGMENT)
         {
-            get { return _offset;}
-        }
-        private readonly Model _model;
-        public EggFragment(uint offset, Model model)
-        {
-            _model = model;
-            _offset = offset;
         }
 
         public string spe
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_SPE]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_SPE]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x0E)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0x0E)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_SPE, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_SPE, parsed);
                 }
                 else
                 {
@@ -54,13 +34,13 @@ namespace MHSEC_G
 
         public string pos
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_POS]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_POS]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x08)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0x08)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_POS, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_POS, parsed);
                 }
                 else
                 {
@@ -72,13 +52,13 @@ namespace MHSEC_G
 
         public string new_flag
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_NEW]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_NEW]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x01)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0x01)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_NEW, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_NEW, parsed);
                 }
                 else
                 {
@@ -89,13 +69,13 @@ namespace MHSEC_G
         }
         public string rarity
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_RAR]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_RAR]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x01)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0x01)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_RAR, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_RAR, parsed);
                 }
                 else
                 {
@@ -107,13 +87,13 @@ namespace MHSEC_G
 
         public string color
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_COL]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_COL]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_COL, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_COL, parsed);
                 }
                 else
                 {
@@ -125,13 +105,13 @@ namespace MHSEC_G
 
         public string dlc
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_DLC]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_DLC]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_DLC, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_DLC, parsed);
                 }
                 else
                 {
@@ -143,13 +123,13 @@ namespace MHSEC_G
 
         public string unknown_6h
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_6H]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_6H]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_6H, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_6H, parsed);
                 }
                 else
                 {
@@ -161,13 +141,13 @@ namespace MHSEC_G
 
         public string unknown_7h
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EF_7H]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EF_7H]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EF_7H, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EF_7H, parsed);
                 }
                 else
                 {
@@ -177,55 +157,14 @@ namespace MHSEC_G
             }
         }
 
-        public static ObservableCollection<EggFragment> read_all_egg_fragments(Model model)
+        public static ObservableCollection<EggFragment> read_all_egg_fragments(byte[] model)
         {
             ObservableCollection<EggFragment> ret = new ObservableCollection<EggFragment>();
-            byte[] buffer = model.save_file;
-            for (uint offset = OFFSETA_EGG_FRAGMENTS; offset < OFFSETA_EGG_FRAGMENTS_END; offset += SIZE_EGG_FRAGMENT)
+            for (uint offset = Offsets.OFFSETA_EGG_FRAGMENTS; offset < Offsets.OFFSETA_EGG_FRAGMENTS_END; offset += Offsets.SIZE_EGG_FRAGMENT)
             {
-                ret.Add(new EggFragment(offset, model));
+                ret.Add(new EggFragment(model, offset));
             }
             return ret;
-        }
-
-
-        private static EggFragment egg_frag_offset_exist(ObservableCollection<EggFragment> fragments, uint offset)
-        {
-            for (uint i = 0; i < fragments.Count; i++)
-            {
-                if(fragments.ElementAt((int)i).offset == offset)
-                    return fragments.ElementAt((int)i);
-            }
-            return null;
-        }
-
-        public static void write_dlc_egg_fragment(ObservableCollection<EggFragment> fragments, Model model, uint dlc)
-        {
-            for (uint offset = OFFSETA_EGG_FRAGMENTS; offset < OFFSETA_EGG_FRAGMENTS + 9*SIZE_EGG_FRAGMENT ; offset += SIZE_EGG_FRAGMENT)
-            {
-                EggFragment each_frag = egg_frag_offset_exist(fragments, offset);
-                if (each_frag == null)
-                {
-                    each_frag = new EggFragment(offset, model);
-                    fragments.Insert((int)((offset - OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT), each_frag);
-                }
-                each_frag.new_flag = "0";
-                each_frag.spe = "08";
-                each_frag.pos = ((offset-OFFSETA_EGG_FRAGMENTS) / SIZE_EGG_FRAGMENT).ToString();
-                each_frag.rarity = "0";
-                each_frag.color = "0";
-                each_frag.dlc = dlc.ToString("X2");
-                each_frag.unknown_6h = "0";
-                each_frag.unknown_7h = "0";
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

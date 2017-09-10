@@ -57,7 +57,7 @@
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
             <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="172,69,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-            <Label x:Name="label_spe" Content="Type (Hex)" Margin="168,97,97,0"
+            <Label x:Name="label_spe" Content="Species (Hex)" Margin="156,97,94,0"
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
             <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,39,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.level}" VerticalAlignment="Top"

@@ -81,7 +81,7 @@
                                                 Header="Index" IsReadOnly="True"/>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="50" Binding="{Binding spe}"
-                                                Header="Species" />
+                                                Header="Genus" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="60" Binding="{Binding pos}"
                                                 Header="Position" />
@@ -109,8 +109,8 @@
             </TabItem>
             <TabItem Header="Eggs">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="egg_grid" HorizontalAlignment="Left" Margin="10,30,0,0"
-                        VerticalAlignment="Top" Height="287" Width="417" CanUserAddRows="False"
+                    <DataGrid x:Name="egg_grid" HorizontalAlignment="Left" Margin="10,54,0,0"
+                        VerticalAlignment="Top" Height="263" Width="417" CanUserAddRows="False"
                         AutoGenerateColumns="False" ItemsSource="{Binding eggs}" SelectionMode="Single">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
@@ -123,15 +123,15 @@
                                                 Header="Index" IsReadOnly="True"/>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding spe}"
-                                Header="Hatched Monster Type" />
+                                Header="Hatched Monster Species" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding wgt}"
                                 Header="Weight" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="label_monster_Copy" Content="Double-click an entry to edit genes." HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
-                    <Button x:Name="button_eggs_delete" Content="Delete" HorizontalAlignment="Left" Margin="353,5,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_delete_Click"/>
-                    <Button x:Name="button_eggs_dummy" Content="Set Dummy Egg" HorizontalAlignment="Left" Margin="240,5,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_dummy_Click"/>
+                    <Label x:Name="label_monster_Copy" Content="Double-click an entry to edit genes. Click twice to edit the table entry." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
+                    <Button x:Name="button_eggs_delete" Content="Delete" HorizontalAlignment="Left" Margin="319,29,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_delete_Click"/>
+                    <Button x:Name="button_eggs_dummy" Content="Set Dummy Egg" HorizontalAlignment="Left" Margin="206,29,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_dummy_Click"/>
 
                 </Grid>
             </TabItem>
@@ -226,10 +226,13 @@
                                                 Width="40" Binding="{Binding index}"
                                                 Header="Index" IsReadOnly="True"/>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="50" Binding="{Binding id}"
+                                                Width="40" Binding="{Binding type}"
+                                                Header="Type" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Width="40" Binding="{Binding id}"
                                 Header="ID" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="50" Binding="{Binding level}"
+                                Width="40" Binding="{Binding level}"
                                 Header="Level" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding unknown_14h}"
@@ -239,7 +242,7 @@
                                 Header="Color2 (RGB)" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                 Width="*" Binding="{Binding unknown_1ch}"
-                                Header="Unknown 1Ch" />
+                                Header="0x1Ch" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -250,6 +253,8 @@
         <Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="90,10,0,0"
                 VerticalAlignment="Top" Width="74" Click="button_load_click" />
         <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
+        <Label x:Name="label_save_ver_cap" Content="Save Version:" HorizontalAlignment="Left" Margin="164,7,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_save_ver" Content="JPN" HorizontalAlignment="Left" Margin="235,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,0.519" FontWeight="Bold"/>
     </Grid>
 </Window>
 

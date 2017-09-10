@@ -6,43 +6,24 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Talisman
+    public class Talisman : InMemoryObject
     {
-        private const uint OFFSETA_TALI = 0x7210;
-        private const uint OFFSETA_TALI_END = 0x978F;
-        private const uint SIZE_TALI = 0x30;
-        private const uint OFFSETR_TALI_RARITY = 0x24;
-        private const uint OFFSETR_TALI_NEW = 0x12;
-        private const uint OFFSETR_TALI_SKILL1 = 0x28;
-        private const uint OFFSETR_TALI_SKILL2 = 0x2A;
-        private const uint OFFSETR_TALI_ID = 0x2;
-        private const uint OFFSETR_EQUIPPED = 0x11;
+        public uint index => (_obj_offset - Offsets.OFFSETA_TALI) / Offsets.SIZE_TALI + 1;
+        
 
-        private readonly uint _offset;
-        public uint index => (_offset - OFFSETA_TALI) / SIZE_TALI + 1;
-
-        public uint offset
+        public Talisman(byte[] model, uint objOffset) : base(model, objOffset, Offsets.SIZE_TALI)
         {
-            get { return _offset; }
-        }
-
-        private readonly Model _model;
-
-        public Talisman(uint offset, Model model)
-        {
-            _model = model;
-            _offset = offset;
         }
 
         public string rarity
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_TALI_RARITY]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_TALI_RARITY]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_TALI_RARITY, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_TALI_RARITY, parsed);
                 }
                 else
                 {
@@ -54,13 +35,13 @@ namespace MHSEC_G
 
         public string id
         {
-            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_ID).ToString("X4"); }
+            get { return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_ID).ToString("X4"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_ID, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_ID, parsed);
                 }
                 else
                 {
@@ -72,13 +53,13 @@ namespace MHSEC_G
 
         public string new_flag
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_TALI_NEW]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_TALI_NEW]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0x1)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0x1)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_TALI_NEW, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_TALI_NEW, parsed);
                 }
                 else
                 {
@@ -89,13 +70,13 @@ namespace MHSEC_G
         }
         public string skill1
         {
-            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL1).ToString("X4"); }
+            get { return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_SKILL1).ToString("X4"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL1, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_SKILL1, parsed);
                 }
                 else
                 {
@@ -107,13 +88,13 @@ namespace MHSEC_G
 
         public string skill2
         {
-            get { return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL2).ToString("X4"); }
+            get { return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_SKILL2).ToString("X4"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_TALI_SKILL2, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_TALI_SKILL2, parsed);
                 }
                 else
                 {
@@ -125,13 +106,13 @@ namespace MHSEC_G
 
         public string equipped
         {
-            get { return Model.byte_to_uint(_model.save_file[_offset + OFFSETR_EQUIPPED]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EQUIPPED]).ToString("X2"); }
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Model.write_byte(_model.save_file, _offset + OFFSETR_EQUIPPED, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EQUIPPED, parsed);
                 }
                 else
                 {
@@ -141,22 +122,14 @@ namespace MHSEC_G
             }
         }
         
-        public static ObservableCollection<Talisman> read_all_talismans(Model model)
+        public static ObservableCollection<Talisman> read_all_talismans(byte[] model)
         {
             ObservableCollection<Talisman> ret = new ObservableCollection<Talisman>();
-            for (uint offset = OFFSETA_TALI; offset < OFFSETA_TALI_END; offset += SIZE_TALI)
+            for (uint offset = Offsets.OFFSETA_TALI; offset < Offsets.OFFSETA_TALI_END; offset += Offsets.SIZE_TALI)
             {
-                ret.Add(new Talisman(offset, model));
+                ret.Add(new Talisman(model, offset));
             }
             return ret;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

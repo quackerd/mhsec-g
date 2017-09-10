@@ -6,29 +6,38 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using MHSEC_G.Annotations;
+using Microsoft.Win32;
 
 namespace MHSEC_G
 {
-    public class Armor : INotifyPropertyChanged
+    public class Armor : InMemoryObject
     {
-        private const uint OFFSETA_ARM = 0x55F0;
-        private const uint OFFSETA_ARM_END = 0x720E;
-        // 200 armors
-        private const uint SIZE_ARM = 0x24;
-        private const uint OFFSETR_ARM_ID = 0x2;
-        private const uint OFFSETR_ARM_LEVEL = 0x4;
-        private const uint OFFSETR_ARM_14h = 0x14;
-        private const uint OFFSETR_ARM_18h = 0x18;
-        private const uint OFFSETR_ARM_1C = 0x1c;
+        public uint index => (_obj_offset - Offsets.OFFSETA_ARM) / Offsets.SIZE_ARM + 1;
 
-        private readonly uint _offset;
-        private readonly Model _model;
-        public uint index => (_offset - OFFSETA_ARM) / SIZE_ARM + 1;
-
-        public Armor(Model model, uint offset)
+        public Armor(byte[] save, uint objOffset) : base(save, objOffset, Offsets.SIZE_ARM)
         {
-            _offset = offset;
-            _model = model;
+            
+        }
+
+        public string type
+        {
+            set
+            {
+                uint parsed;
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                {
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_TYPE, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed int - must be at most 0xFFFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(type));
+            }
+            get
+            {
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_TYPE).ToString("X4");
+            }
         }
 
         public string id
@@ -36,9 +45,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_ARM_ID, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_ID, parsed);
                 }
                 else
                 {
@@ -48,7 +57,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_ARM_ID).ToString("X4");
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_ID).ToString("X4");
             }
         }
 
@@ -57,9 +66,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_ARM_LEVEL, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_LEVEL, parsed);
                 }
                 else
                 {
@@ -69,7 +78,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_ARM_LEVEL).ToString("X4");
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ARM_LEVEL).ToString("X4");
             }
         }
 
@@ -79,9 +88,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed))
+                if (Helper.parse_hex_string(value, out parsed))
                 {
-                    Model.write_uint32_le(_model.save_file, _offset + OFFSETR_ARM_14h, parsed);
+                    Helper.write_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_14h, parsed);
                 }
                 else
                 {
@@ -91,7 +100,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint32_le(_model.save_file, _offset + OFFSETR_ARM_14h).ToString("X8");
+                return Helper.byte_to_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_14h).ToString("X8");
             }
         }
 
@@ -100,9 +109,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed))
+                if (Helper.parse_hex_string(value, out parsed))
                 {
-                    Model.write_uint32_le(_model.save_file, _offset + OFFSETR_ARM_18h, parsed);
+                    Helper.write_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_18h, parsed);
                 }
                 else
                 {
@@ -112,7 +121,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint32_le(_model.save_file, _offset + OFFSETR_ARM_18h).ToString("X8");
+                return Helper.byte_to_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_18h).ToString("X8");
             }
         }
 
@@ -121,9 +130,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed))
+                if (Helper.parse_hex_string(value, out parsed))
                 {
-                    Model.write_uint32_le(_model.save_file, _offset + OFFSETR_ARM_1C, parsed);
+                    Helper.write_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_1C, parsed);
                 }
                 else
                 {
@@ -133,28 +142,18 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint32_le(_model.save_file, _offset + OFFSETR_ARM_1C).ToString("X8");
+                return Helper.byte_to_uint32_le(_data, _obj_offset + Offsets.OFFSETR_ARM_1C).ToString("X8");
             }
         }
 
-        public static ObservableCollection<Armor> read_all_armors(Model model)
+        public static ObservableCollection<Armor> read_all_armors(byte[] save)
         {
             ObservableCollection<Armor> ret = new ObservableCollection<Armor>();
-            for (uint i = OFFSETA_ARM; i < OFFSETA_ARM_END; i += SIZE_ARM)
+            for (uint i = Offsets.OFFSETA_ARM; i < Offsets.OFFSETA_ARM_END; i += Offsets.SIZE_ARM)
             {
-                ret.Add(new Armor(model, i));
+                ret.Add(new Armor(save, i));
             }
             return ret;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
-
-
 }

@@ -9,25 +9,14 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Genes : INotifyPropertyChanged
+    public class Genes : InMemoryObject
     {
-        public static readonly List<uint> GENE_ID = new List<uint>();
-        public static readonly List<string> GENE_NAME = new List<string>();
-        public List<string> gene_name => GENE_NAME;
-
-        private readonly uint _size;
-        private readonly Model _model;
-        private readonly uint _offset;
-        public Genes(Model model, uint offset, uint size)
+        public List<string> gene_name => Offsets.GENE_NAME;
+        private readonly uint _gene_size;
+        public Genes(byte[] model, uint objOffset, uint gene_size) : base(model, objOffset, 9 * gene_size)
         {
-            this._size = size;
-            this._offset = offset;
-            this._model = model;
+            _gene_size = gene_size;
         }
-
-        // 
-        // Genes
-        //
 
         private uint extract_gene(uint gene_idx)
         {
@@ -35,14 +24,13 @@ namespace MHSEC_G
             {
                 BugCheck.bug_check(BugCheck.ErrorCode.MON_GENE_IDX_OVERFLOW, "Invalid gene index: " + gene_idx);
             }
-            return Model.byte_to_uint16_le(_model.save_file,
-                _offset + gene_idx * _size);
+            return Helper.byte_to_uint16_le(_data, _obj_offset + gene_idx * _gene_size);
         }
 
         private void set_gene_str(uint gene_idx, string val)
         {
             uint parsed;
-            if (Model.parse_hex_string(val, out parsed))
+            if (Helper.parse_hex_string(val, out parsed))
             {
                 set_gene(gene_idx, parsed);
             }
@@ -61,7 +49,7 @@ namespace MHSEC_G
             }
             if (val <= 0xFFFF)
             {
-                Model.write_uint16_le(_model.save_file, _offset + gene_idx * _size,
+                Helper.write_uint16_le(_data, _obj_offset + gene_idx * _gene_size,
                     val);
             }
             else
@@ -74,20 +62,20 @@ namespace MHSEC_G
         private int extract_gene_idx(uint gene_idx)
         {
             uint gene_id = extract_gene(gene_idx);
-            int idx = GENE_ID.IndexOf(gene_id);
+            int idx = Offsets.GENE_ID.IndexOf(gene_id);
             if (idx == -1)
             {
                 // unknown
-                return GENE_NAME.Count - 1;
+                return Offsets.GENE_NAME.Count - 1;
             }
             return idx;
         }
 
         private void set_gene_idx(uint gene_idx, int val)
         {
-            if (val != -1 && val != GENE_NAME.Count - 1)
+            if (val != -1 && val != Offsets.GENE_NAME.Count - 1)
             {
-                set_gene(gene_idx, GENE_ID.ElementAt(val));
+                set_gene(gene_idx, Offsets.GENE_ID.ElementAt(val));
             }
         }
 
@@ -296,39 +284,6 @@ namespace MHSEC_G
                 OnPropertyChanged(nameof(gene9));
                 OnPropertyChanged(nameof(gene9_selected));
             }
-        }
-
-        public static void read_gene_mapping()
-        {
-            string line;
-            StringReader file = new StringReader(Properties.Resources.gene);
-
-            while ((line = file.ReadLine()) != null)
-            {
-                if (line.Length == 0)
-                    continue;
-
-                string[] eachline = line.Split('\t');
-                if (eachline.Length != 2)
-                {
-                    BugCheck.bug_check(BugCheck.ErrorCode.MON_GENE_MAPPING_CORRUPTED,
-                        "Invalid gene mapping file line:\n" + line);
-                }
-
-                GENE_ID.Add(uint.Parse(eachline[0], System.Globalization.NumberStyles.HexNumber));
-                GENE_NAME.Add(eachline[1]);
-            }
-            GENE_NAME.Add("Custom");
-
-            file.Close();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

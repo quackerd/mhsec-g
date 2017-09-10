@@ -32,7 +32,7 @@ namespace MHSEC_G
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 byte[] buffer = File.ReadAllBytes(dialog.FileName);
-                if (buffer.Length != Monster.SIZE_MONSTER)
+                if (buffer.Length != Offsets.SIZE_MONSTER)
                 {
                     System.Windows.Forms.MessageBox.Show(
                         "Wrong monster file size!",
@@ -64,7 +64,7 @@ namespace MHSEC_G
             dialog.FileName = _monster.name + ".bin";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                byte[] binary = _monster.getByteArray();
+                byte[] binary = _monster.toByteArray();
                 File.WriteAllBytes(dialog.FileName, binary);
                 MessageBox.Show("Exported to \"" + dialog.FileName + "\"", "MHSEC-G", MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -73,7 +73,7 @@ namespace MHSEC_G
 
         private void button_mexp_Click(object sender, RoutedEventArgs e)
         {
-            _monster.exp = Monster.LIMIT_MONSTER_EXP;
+            _monster.exp = Offsets.LIMIT_MONSTER_EXP;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

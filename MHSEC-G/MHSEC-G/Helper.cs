@@ -4,26 +4,8 @@ using System.Text;
 
 namespace MHSEC_G
 {
-    public class Model
+    public static class Helper
     {
-        public const uint SAVE_FILE_SIZE = 483976;
-
-        private readonly byte[] _save_file;
-
-        public byte[] save_file
-        {
-            get { return _save_file; }
-        }
-
-        public Model(byte[] save_file)
-        {
-            if (save_file.Length != SAVE_FILE_SIZE)
-            {
-                BugCheck.bug_check(BugCheck.ErrorCode.MODEL_INVALID_FILE_SIZE, "Invalid file size.\nExpected: " + SAVE_FILE_SIZE + " Got: " + save_file.Length);
-            }
-            _save_file = save_file;
-        }
-
         public static uint byte_to_uint(byte b)
         {
             return (uint) (b) & 0xFF;

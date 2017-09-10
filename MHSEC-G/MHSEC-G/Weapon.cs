@@ -6,25 +6,12 @@ using MHSEC_G.Annotations;
 
 namespace MHSEC_G
 {
-    public class Weapon : INotifyPropertyChanged
+    public class Weapon : InMemoryObject
     {
-        private const int OFFSETA_WEAPON_START = 0x39D0;
-        private const int OFFSETA_WEAPON_END = 0x55EF;
-        // 200 weapons
-        private const int SIZE_WEAPON = 0x24;
+        public uint index => (_obj_offset - Offsets.OFFSETA_WEAPON_START) / Offsets.SIZE_WEAPON + 1;
 
-        private const int OFFSETR_CLASS = 0x0;
-        private const int OFFSETR_ID = 0x2;
-        private const int OFFSETR_LEVEL = 0x4;
-
-        private readonly uint _offset;
-        private readonly Model _model;
-        public uint index => (_offset - OFFSETA_WEAPON_START) / SIZE_WEAPON + 1;
-
-        public Weapon(Model model, uint offset)
+        public Weapon(byte[] model, uint objOffset) : base(model, objOffset, Offsets.SIZE_WEAPON)
         {
-            _offset = offset;
-            _model = model;
         }
 
         public string clazz
@@ -32,9 +19,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_CLASS, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_CLASS, parsed);
                 }
                 else
                 {
@@ -44,7 +31,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_CLASS).ToString("X4");
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_CLASS).ToString("X4");
             }
         }
 
@@ -53,9 +40,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_ID, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ID, parsed);
                 }
                 else
                 {
@@ -65,7 +52,7 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_ID).ToString("X4");
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_ID).ToString("X4");
             }
         }
 
@@ -75,9 +62,9 @@ namespace MHSEC_G
             set
             {
                 uint parsed;
-                if (Model.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
                 {
-                    Model.write_uint16_le(_model.save_file, _offset + OFFSETR_LEVEL, parsed);
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_LEVEL, parsed);
                 }
                 else
                 {
@@ -87,26 +74,18 @@ namespace MHSEC_G
             }
             get
             {
-                return Model.byte_to_uint16_le(_model.save_file, _offset + OFFSETR_LEVEL).ToString("X4");
+                return Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_LEVEL).ToString("X4");
             }
         }
 
-        public static ObservableCollection<Weapon> read_all_weapons(Model model)
+        public static ObservableCollection<Weapon> read_all_weapons(byte[] model)
         {
             ObservableCollection<Weapon> ret = new ObservableCollection<Weapon>();
-            for (uint i = OFFSETA_WEAPON_START; i < OFFSETA_WEAPON_END; i += SIZE_WEAPON)
+            for (uint i = Offsets.OFFSETA_WEAPON_START; i < Offsets.OFFSETA_WEAPON_END; i += Offsets.SIZE_WEAPON)
             {
                 ret.Add(new Weapon(model, i));
             }
             return ret;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

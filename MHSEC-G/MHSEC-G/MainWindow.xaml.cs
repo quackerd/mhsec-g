@@ -16,8 +16,6 @@ namespace MHSEC_G
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private readonly byte[] _dummy_data = new byte[Model.SAVE_FILE_SIZE];
-
         private static string get_app_version()
         {
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
@@ -29,11 +27,13 @@ namespace MHSEC_G
         {
             InitializeComponent();
             button_save.IsEnabled = false;
-            Item.read_item_mappings();
-            Genes.read_gene_mapping();
-            Array.Clear(_dummy_data, 0, _dummy_data.Length);
+            byte[] dummy = new byte[Offsets.SAVE_FILE_SIZE_JPN];
+            Array.Clear(dummy, 0, dummy.Length);
             this.Title = "MHSEC-G Ver " + get_app_version();
-            init(_dummy_data);
+
+            Offsets.init(dummy);
+            init(dummy);
+
             DataContext = this;
         }
 
@@ -45,16 +45,25 @@ namespace MHSEC_G
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 byte[] buffer = File.ReadAllBytes(dialog.FileName);
-                if (buffer.Length != Model.SAVE_FILE_SIZE)
+                if (buffer.Length != Offsets.SAVE_FILE_SIZE_JPN && buffer.Length != Offsets.SAVE_FILE_SIZE_NA)
                 {
                     System.Windows.Forms.MessageBox.Show(
-                        "Wrong save file size! Expected: " + Model.SAVE_FILE_SIZE + " Got: " + buffer.Length,
-                        "Error",
+                        "Unsupported save file!",
+                        "MHSEC-G",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
                 else
                 {
+                    if (buffer.Length == Offsets.SAVE_FILE_SIZE_JPN)
+                    {
+                        label_save_ver.Content = "JPN";
+                    }
+                    else
+                    {
+                        label_save_ver.Content = "EUR/USA";
+                    }
+                    Offsets.init(buffer);
                     init(buffer);
                     OnPropertyChanged(null);
                     button_save.IsEnabled = true;
@@ -64,12 +73,12 @@ namespace MHSEC_G
 
         private void button_char_money_Click(object sender, RoutedEventArgs e)
         {
-            _character.money = Character.LIMIT_MONEY;
+            _character.money = Offsets.LIMIT_MONEY;
         }
 
         private void button_char_exp_Click(object sender, RoutedEventArgs e)
         {
-            _character.exp = Character.LIMIT_EXP;
+            _character.exp = Offsets.LIMIT_EXP;
         }
 
         private void button_item_all_Click(object sender, RoutedEventArgs e)
@@ -77,7 +86,7 @@ namespace MHSEC_G
             List<Item> items = _items;
             for (uint i = 0; i < items.Count; i++)
             {
-                if (items.ElementAt((int) i).offset >= Item.OFFSETA_FIRST_KEY_ITEM)
+                if (items.ElementAt((int) i).offset >= Offsets.OFFSETA_FIRST_KEY_ITEM)
                     break;
 
                 items.ElementAt((int) i).count = 986;
@@ -89,7 +98,7 @@ namespace MHSEC_G
             List<Item> items = _items;
             for (uint i = 0; i < items.Count; i++)
             {
-                if (items.ElementAt((int) i).offset >= Item.OFFSETA_FIRST_KEY_ITEM)
+                if (items.ElementAt((int) i).offset >= Offsets.OFFSETA_FIRST_KEY_ITEM)
                     break;
 
                 if (items.ElementAt((int) i).count != 0)
@@ -107,45 +116,10 @@ namespace MHSEC_G
             dialog.FileName = "mhr_game0.sav";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                File.WriteAllBytes(dialog.FileName, _model.save_file);
+                File.WriteAllBytes(dialog.FileName, _model);
                 MessageBox.Show("Saved to \"" + dialog.FileName + "\"", "MHSEC-G", MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
-        }
-
-        private void button_give_epony_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x4);
-        }
-
-        private void button_give_bear_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x5);
-        }
-
-        private void button_give_mtiggy_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x20);
-        }
-
-        private void button_give_okirin_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x21);
-        }
-
-        private void button_give_dino_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x6);
-        }
-
-        private void button_give_wm_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x1F);
-        }
-
-        private void button_give_pd_Click(object sender, RoutedEventArgs e)
-        {
-            EggFragment.write_dlc_egg_fragment(_egg_fragments, _model, 0x3);
         }
 
         private void button_about_Click(object sender, RoutedEventArgs e)
@@ -154,8 +128,8 @@ namespace MHSEC_G
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private Model _model;
-        public Model model => _model;
+        private byte[] _model;
+        public byte[] model => _model;
 
         private Character _character;
         public Character character => _character;
@@ -187,7 +161,7 @@ namespace MHSEC_G
             {
                 BugCheck.bug_check(BugCheck.ErrorCode.VIEWMODEL_NULL_SAVE, "The save file reference is NULL.");
             }
-            _model = new Model(save);
+            _model = save;
             _character = new Character(_model);
             _items = Item.read_all_items(_model);
             _monsters = new ObservableCollection<Monster>(Monster.read_all_monsters(_model));
