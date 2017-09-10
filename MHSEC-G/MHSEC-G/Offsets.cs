@@ -178,6 +178,15 @@ namespace MHSEC_G
         //
         // Monsters 
         //
+        private static byte[] _MONSTER_NULL_TEMPLATE;
+        public static byte[] MONSTER_NULL_TEMPLATE => _MONSTER_NULL_TEMPLATE;
+
+        private static uint _OFFSETA_MONSTER_PARTY;
+        public static uint OFFSETA_MONSTER_PARTY => _OFFSETA_MONSTER_PARTY;
+
+        private static uint _OFFSETR_MONSTER_UID;
+        public static uint OFFSETR_MONSTER_UID => _OFFSETR_MONSTER_UID ;
+
         private static uint _LIMIT_MONSTER_EXP;
         public static uint LIMIT_MONSTER_EXP => _LIMIT_MONSTER_EXP;
 
@@ -368,6 +377,10 @@ namespace MHSEC_G
                 //
                 //Monsters
                 //
+                _OFFSETR_MONSTER_UID = 0x28;
+                _OFFSETA_MONSTER_PARTY = 0x47870;
+                _MONSTER_NULL_TEMPLATE = Properties.Resources.monster_null_template_JPN;
+
                 _LIMIT_MONSTER_EXP = 0xFFFFFF;
                 _SIZE_MONSTER = 0x478;
                 _OFFSETA_MONSTER = 0xA150;
@@ -483,6 +496,10 @@ namespace MHSEC_G
                 //
                 // Monsters ok
                 //
+                _MONSTER_NULL_TEMPLATE = Properties.Resources.monster_null_template_NA;
+
+                _OFFSETA_MONSTER_PARTY = 0x49B7C;
+                _OFFSETR_MONSTER_UID = 0x50;
                 _LIMIT_MONSTER_EXP = 0xFFFFFF;
                 _SIZE_MONSTER = 0x4A0;
                 _OFFSETA_MONSTER = 0xA1FC;

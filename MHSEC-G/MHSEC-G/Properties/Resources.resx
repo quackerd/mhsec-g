@@ -124,9 +124,6 @@
   <data name="MainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MainIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="monster_null_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\monster_null_template.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="gene" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gene.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
   </data>
@@ -135,5 +132,11 @@
   </data>
   <data name="egg_null_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\egg_null_template.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="monster_null_template_JPN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monster_null_template_JPN.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="monster_null_template_NA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monster_null_template_NA.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

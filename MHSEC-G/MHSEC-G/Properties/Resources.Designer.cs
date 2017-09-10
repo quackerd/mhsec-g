@@ -82,7 +82,7 @@ namespace MHSEC_G.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 0001	Empty Slot
-        ///0002	No Slot
+        ///0002	Locked Slot
         ///0003	アプトノス遺伝子
         ///0004	ポポ遺伝子
         ///0005	アプケロス遺伝子
@@ -118,8 +118,7 @@ namespace MHSEC_G.Properties {
         ///0023	岩竜遺伝子
         ///0024	桃岩竜遺伝子
         ///0025	鎧竜遺伝子
-        ///0026	黒鎧竜遺伝子
-        ///0 [rest of string was truncated]&quot;;.
+        ///0026	黒鎧竜遺伝 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string gene {
             get {
@@ -187,9 +186,19 @@ namespace MHSEC_G.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] monster_null_template {
+        internal static byte[] monster_null_template_JPN {
             get {
-                object obj = ResourceManager.GetObject("monster_null_template", resourceCulture);
+                object obj = ResourceManager.GetObject("monster_null_template_JPN", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] monster_null_template_NA {
+            get {
+                object obj = ResourceManager.GetObject("monster_null_template_NA", resourceCulture);
                 return ((byte[])(obj));
             }
         }

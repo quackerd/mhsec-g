@@ -36,6 +36,26 @@ namespace MHSEC_G
             }
         }
 
+        public string uid
+        {
+            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_UID).ToString("X4");
+            set
+            {
+                uint parsed;
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFFFF)
+                {
+                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_UID, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("UID must be at most 0xFFFF", "Error", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(uid));
+            }
+        }
+
+
         public uint atk
         {
             get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_ATK);
@@ -250,26 +270,46 @@ namespace MHSEC_G
             }
         }
 
-        public string skill
+        public string skill1
         {
-            get => Helper.byte_to_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_SKILL).ToString("X4");
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_SKILL]).ToString("X2");
             set
             {
                 uint parsed;
-                if (Helper.parse_hex_string(value, out parsed))
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Helper.write_uint16_le(_data, _obj_offset + Offsets.OFFSETR_MONSTER_SKILL, parsed);
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_SKILL] = (byte) (parsed & 0xFF);
                 }
                 else
                 {
-                    MessageBox.Show("Malformed skill value - must be 0x0 to 0xFFFF.", "Error", MessageBoxButton.OK,
+                    MessageBox.Show("Malformed skill value - must be <= 0xFF.", "Error", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                 }
 
-                OnPropertyChanged(nameof(skill));
+                OnPropertyChanged(nameof(skill1));
             }
         }
-       
+
+        public string skill2
+        {
+            get => Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_MONSTER_SKILL + 1]).ToString("X2");
+            set
+            {
+                uint parsed;
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                {
+                    _data[_obj_offset + Offsets.OFFSETR_MONSTER_SKILL + 1] = (byte)(parsed & 0xFF);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed skill value - must be <= 0xFF.", "Error", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+
+                OnPropertyChanged(nameof(skill2));
+            }
+        }
+
 
         public Monster(byte[] model, uint objOffset) : base(model, objOffset, Offsets.SIZE_MONSTER)
         {

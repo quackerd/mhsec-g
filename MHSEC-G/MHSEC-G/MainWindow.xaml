@@ -137,8 +137,8 @@
             </TabItem>
             <TabItem Header="Monsters" Margin="0,0,0,0">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="monster_grid" HorizontalAlignment="Left" Margin="10,24,0,0" IsReadOnly="True"
-                        VerticalAlignment="Top" Height="293" Width="414" CanUserAddRows="False"
+                    <DataGrid x:Name="monster_grid" HorizontalAlignment="Left" Margin="10,36,0,0" IsReadOnly="True"
+                        VerticalAlignment="Top" Height="286" Width="414" CanUserAddRows="False"
                         AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding monsters}">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
@@ -147,20 +147,24 @@
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="40" Binding="{Binding box}"
+                                Width="30" Binding="{Binding box}"
                                 Header="Box"/>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                Width="40" Binding="{Binding slot}"
+                                Width="30" Binding="{Binding slot}"
                                 Header="Slot"/>
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
-                                                Width="250" Binding="{Binding name}"
+                                                Width="40" Binding="{Binding uid}"
+                                                Header="UID"/>
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                                Width="200" Binding="{Binding name}"
                                                 Header="Name" />
                             <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
                                                 Width="*" Binding="{Binding level}"
                                                 Header="Level" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="label_monster" Content="Double-click an entry to edit." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
+                    <Label x:Name="label_monster" Content="Double-click an entry to edit." HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
+                    <Button x:Name="btn_monster_party" Content="Edit Current Party" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="312,8,0,0" Click="btn_monster_party_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Talismans" Margin="0,0,0,0">

@@ -52,7 +52,7 @@ namespace MHSEC_G
             MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete the monster?", "MHSEC-G", MessageBoxButton.YesNo);
             if (confirm == MessageBoxResult.Yes)
             {
-                _monster.setByteArray(Properties.Resources.monster_null_template);
+                _monster.setByteArray(Offsets.MONSTER_NULL_TEMPLATE);
             }
         }
 

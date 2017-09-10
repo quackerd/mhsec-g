@@ -30,10 +30,8 @@ namespace MHSEC_G
             byte[] dummy = new byte[Offsets.SAVE_FILE_SIZE_JPN];
             Array.Clear(dummy, 0, dummy.Length);
             this.Title = "MHSEC-G Ver " + get_app_version();
-
             Offsets.init(dummy);
             init(dummy);
-
             DataContext = this;
         }
 
@@ -233,6 +231,12 @@ namespace MHSEC_G
                     (this.egg_grid.SelectedItem as Egg).setByteArray(Properties.Resources.egg_null_template);
                 }
             }
+        }
+
+        private void btn_monster_party_Click(object sender, RoutedEventArgs e)
+        {
+            PartyWindow partyWnd = new PartyWindow(_model);
+            partyWnd.Show();
         }
     }
 }

@@ -5,87 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MHSEC_G"
         mc:Ignorable="d"
-        Title="Monster Editor" Height="328" Width="337.449" ResizeMode="NoResize">
-    <Grid>
-        <Grid Background="#FFE5E5E5" Margin="0,0,0.5,-0.5">
-            <Label x:Name="label_mhp" Content="HP" HorizontalAlignment="Left" Margin="30,39,0,0"
+        Title="Monster Editor" Height="313.238" Width="339.947" ResizeMode="NoResize">
+    <Grid Background="#FFE5E5E5">
+        <Label x:Name="label_mhp" Content="HP" HorizontalAlignment="Left" Margin="26,39,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mat" Content="Atk" HorizontalAlignment="Left" Margin="27,68,0,0"
+        <Label x:Name="label_mat" Content="Atk" HorizontalAlignment="Left" Margin="23,68,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mdf" Content="Def" HorizontalAlignment="Left" Margin="26,97,0,0"
+        <Label x:Name="label_mdf" Content="Def" HorizontalAlignment="Left" Margin="22,97,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mhiv" Content="IV-HP" HorizontalAlignment="Left" Margin="15,125,0,0"
+        <Label x:Name="label_mhiv" Content="IV-HP" HorizontalAlignment="Left" Margin="11,125,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mdiv" Content="IV-Atk" HorizontalAlignment="Left" Margin="12,154,0,0"
+        <Label x:Name="label_mdiv" Content="IV-Atk" HorizontalAlignment="Left" Margin="8,154,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_maiv" Content="IV-Def" HorizontalAlignment="Left" Margin="11,182,0,0"
+        <Label x:Name="label_maiv" Content="IV-Def" HorizontalAlignment="Left" Margin="7,182,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mhpu" Content="PowerUp-HP" HorizontalAlignment="Left" Margin="157,123,0,0"
+        <Label x:Name="label_mhpu" Content="PowerUp-HP" HorizontalAlignment="Left" Margin="157,123,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mapu" Content="PowerUp-Atk" HorizontalAlignment="Left" Margin="154,151,0,0"
+        <Label x:Name="label_mapu" Content="PowerUp-Atk" HorizontalAlignment="Left" Margin="154,151,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="154,179,0,0"
+        <Label x:Name="label_mdpu" Content="PowerUp-Def" HorizontalAlignment="Left" Margin="154,179,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
-            <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="60,39,0,0"
+        <TextBox x:Name="textbox_mhp" HorizontalAlignment="Left" Height="23" Margin="56,39,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.hp}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mat" HorizontalAlignment="Left" Height="23" Margin="60,69,0,0"
+        <TextBox x:Name="textbox_mat" HorizontalAlignment="Left" Height="23" Margin="56,69,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.atk}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mdf" HorizontalAlignment="Left" Height="23" Margin="60,97,0,0"
+        <TextBox x:Name="textbox_mdf" HorizontalAlignment="Left" Height="23" Margin="56,97,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.def}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mhiv" HorizontalAlignment="Left" Height="23" Margin="60,126,0,0"
+        <TextBox x:Name="textbox_mhiv" HorizontalAlignment="Left" Height="23" Margin="56,126,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.hiv}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_maiv" HorizontalAlignment="Left" Height="23" Margin="60,154,0,0"
+        <TextBox x:Name="textbox_maiv" HorizontalAlignment="Left" Height="23" Margin="56,154,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.aiv}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mdiv" HorizontalAlignment="Left" Height="23" Margin="60,182,0,0"
+        <TextBox x:Name="textbox_mdiv" HorizontalAlignment="Left" Height="23" Margin="56,182,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.div}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mhpu" HorizontalAlignment="Left" Height="23" Margin="240,126,0,0"
+        <TextBox x:Name="textbox_mhpu" HorizontalAlignment="Left" Height="23" Margin="240,126,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.hpu}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mapu" HorizontalAlignment="Left" Height="23" Margin="240,154,0,0"
+        <TextBox x:Name="textbox_mapu" HorizontalAlignment="Left" Height="23" Margin="240,154,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.apu}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,182,0,0"
+        <TextBox x:Name="textbox_mdpu" HorizontalAlignment="Left" Height="23" Margin="240,182,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.dpu}" VerticalAlignment="Top"
                      Width="75" />
-            <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="198,36,0,0"
+        <Label x:Name="label_mlv" Content="Level" HorizontalAlignment="Left" Margin="198,36,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-            <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="172,69,0,0"
+        <Label x:Name="label_mex" Content="Exp" HorizontalAlignment="Left" Margin="172,69,0,0"
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-            <Label x:Name="label_spe" Content="Species (Hex)" Margin="156,97,94,0"
+        <Label x:Name="label_spe" Content="Species (Hex)" Margin="156,97,94,0"
                    VerticalAlignment="Top" RenderTransformOrigin="-0.263,0.135" />
-            <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,39,0,0"
+        <TextBox x:Name="textbox_mlv" HorizontalAlignment="Left" Height="24" Margin="240,38,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.level}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_mex" HorizontalAlignment="Left" Height="24" Margin="240,68,0,0"
+        <TextBox x:Name="textbox_mex" HorizontalAlignment="Left" Height="24" Margin="240,68,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.exp}" VerticalAlignment="Top"
                      Width="75" />
-            <TextBox x:Name="textbox_spe" HorizontalAlignment="Left" Height="24" Margin="240,97,0,0"
+        <TextBox x:Name="textbox_spe" HorizontalAlignment="Left" Height="24" Margin="240,97,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.spe, StringFormat=\{0:X2\}}" VerticalAlignment="Top"
                      Width="75"/>
-            <Label x:Name="label_mname" Content="Name" HorizontalAlignment="Left" Margin="14,10,0,0"
+        <Label x:Name="label_mname" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0"
                    VerticalAlignment="Top" />
-            <TextBox x:Name="textbox_mname" HorizontalAlignment="Left" Height="22" Margin="60,12,0,0"
+        <TextBox x:Name="textbox_mname" HorizontalAlignment="Left" Height="22" Margin="56,12,0,0"
                      TextWrapping="Wrap" Text="{Binding monster.name}" VerticalAlignment="Top"
                      Width="118" />
-            <Label x:Name="label_m_warn" Content="Warning: The sum of PowerUps should be at most 10."
-                   HorizontalAlignment="Left" Margin="11,210,0,0" VerticalAlignment="Top" />
-            <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="200,72,0,0"
+        <Button x:Name="button_mexp" Content="Max" HorizontalAlignment="Left" Margin="200,72,0,0"
                     VerticalAlignment="Top" Width="35" Click="button_mexp_Click" />
-            <Button x:Name="button_mdel" Content="Export" HorizontalAlignment="Left" Margin="73,270,0,0" VerticalAlignment="Top" Width="76" Click="button_mdel_Click"/>
-            <Label x:Name="label_mon_skill" Content="Skill (X)" HorizontalAlignment="Left" Margin="186,10,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textbox_mon_skill" HorizontalAlignment="Left" Height="24" Margin="240,10,0,0"
-                     TextWrapping="Wrap" Text="{Binding monster.skill}" VerticalAlignment="Top"
+        <Button x:Name="button_mdel" Content="Export" HorizontalAlignment="Left" Margin="7,251,0,0" VerticalAlignment="Top" Width="76" Click="button_mdel_Click" Height="24"/>
+        <Label x:Name="label_mon_skill" Content="Skill 1" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_mon_skill" HorizontalAlignment="Left" Height="24" Margin="56,211,0,0"
+                     TextWrapping="Wrap" Text="{Binding monster.skill1}" VerticalAlignment="Top"
                      Width="75" />
-            <Button x:Name="button_mdel_import" Content="Import" HorizontalAlignment="Left" Margin="157,270,0,0" VerticalAlignment="Top" Width="76" Click="button_mimport_Click" RenderTransformOrigin="0.167,-0.328"/>
-            <Button x:Name="button_mdel_delete" Content="Delete" HorizontalAlignment="Left" Margin="239,270,0,0" VerticalAlignment="Top" Width="76" Click="button_mdelete_Click" Height="20"/>
-            <Button x:Name="button_mdel_genes" Content="Edit Genes" HorizontalAlignment="Left" Margin="239,241,0,0" VerticalAlignment="Top" Width="75" Click="button_mdel_genes_Click"/>
-        </Grid>
-
+        <Button x:Name="button_mdel_import" Content="Import" HorizontalAlignment="Left" Margin="88,251,0,0" VerticalAlignment="Top" Width="76" Click="button_mimport_Click" RenderTransformOrigin="0.167,-0.328" Height="24"/>
+        <Button x:Name="button_mdel_delete" Content="Delete" HorizontalAlignment="Left" Margin="169,251,0,0" VerticalAlignment="Top" Width="76" Click="button_mdelete_Click" Height="24" RenderTransformOrigin="-0.095,0.426"/>
+        <Button x:Name="button_mdel_genes" Content="Edit Genes" HorizontalAlignment="Left" Margin="250,251,0,0" VerticalAlignment="Top" Width="75" Click="button_mdel_genes_Click" Height="24" RenderTransformOrigin="0.415,0.563"/>
+        <Label x:Name="label_mon_uid" Content="UID (Hex)" HorizontalAlignment="Left" Margin="176,10,0,0"
+                VerticalAlignment="Top" RenderTransformOrigin="0.564,2.072" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="240,10,0,0" TextWrapping="Wrap" Text="{Binding monster.uid}" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="lab" Content="Skill 2" HorizontalAlignment="Left" Margin="195,211,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_mon_skill_Copy" HorizontalAlignment="Left" Height="24" Margin="240,211,0,0"
+            TextWrapping="Wrap" Text="{Binding monster.skill2}" VerticalAlignment="Top"
+            Width="75" />
     </Grid>
 </Window>
