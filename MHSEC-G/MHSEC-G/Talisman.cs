@@ -106,13 +106,13 @@ namespace MHSEC_G
 
         public string equipped
         {
-            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_EQUIPPED]).ToString("X2"); }
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_TALI_EQUIPPED]).ToString("X2"); }
             set
             {
                 uint parsed;
                 if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
                 {
-                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_EQUIPPED, parsed);
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_TALI_EQUIPPED, parsed);
                 }
                 else
                 {

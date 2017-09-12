@@ -76,31 +76,31 @@
                               VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
                               AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Path=egg_fragments}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="50" Binding="{Binding idx}"
                                                 Header="Index" IsReadOnly="True"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="50" Binding="{Binding spe}"
                                                 Header="Genus" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="60" Binding="{Binding pos}"
                                                 Header="Position" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding new_flag}"
                                                 Header="New" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding rarity}"
                                                 Header="Rarity" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding color}"
                                                 Header="Color" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding dlc}"
                                                 Header="DLC" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding unknown_7h}"
                                                 Header="0x6" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding unknown_6h}"
                                                 Header="0x7" />
                         </DataGrid.Columns>
@@ -118,20 +118,22 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding index}"
                                                 Header="Index" IsReadOnly="True"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="*" Binding="{Binding spe}"
                                 Header="Hatched Monster Species" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="*" Binding="{Binding wgt}"
                                 Header="Weight" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label x:Name="label_monster_Copy" Content="Double-click an entry to edit genes. Click twice to edit the table entry." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.019"/>
-                    <Button x:Name="button_eggs_delete" Content="Delete" HorizontalAlignment="Left" Margin="319,29,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_delete_Click"/>
-                    <Button x:Name="button_eggs_dummy" Content="Set Dummy Egg" HorizontalAlignment="Left" Margin="206,29,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_dummy_Click"/>
+                    <Button x:Name="button_eggs_delete" Content="Delete" HorizontalAlignment="Left" Margin="347,29,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_delete_Click"/>
+                    <Button x:Name="button_eggs_dummy" Content="Set Dummy" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_dummy_Click"/>
+                    <Button x:Name="button_eggs_export" Content="Export" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_export_Click"/>
+                    <Button x:Name="button_eggs_import" Content="Import" HorizontalAlignment="Left" Margin="177,29,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="1.601,-0.2" Click="button_eggs_import_Click"/>
 
                 </Grid>
             </TabItem>
@@ -146,19 +148,19 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="30" Binding="{Binding box}"
                                 Header="Box"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="30" Binding="{Binding slot}"
                                 Header="Slot"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding uid}"
                                                 Header="UID"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="200" Binding="{Binding name}"
                                                 Header="Name" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding level}"
                                                 Header="Level" />
                         </DataGrid.Columns>
@@ -173,25 +175,25 @@
                               VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
                               AutoGenerateColumns="False" ItemsSource="{Binding Path=talismans}" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding index}"
                                                 Header="Index" IsReadOnly="True" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding id}"
                                                 Header="ID" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding rarity}"
                                                 Header="Rarity" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding new_flag}"
                                                 Header="New" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="70" Binding="{Binding equipped}"
                                                 Header="Equipped" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding skill1}"
                                                 Header="Skill 1" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding skill2}"
                                                 Header="Skill 2" />
                         </DataGrid.Columns>
@@ -204,18 +206,21 @@
                               VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
                               AutoGenerateColumns="False" ItemsSource="{Binding weapons}" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding index}"
                                                 Header="Index" IsReadOnly="True"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="80" Binding="{Binding clazz}"
                                                 Header="Class" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="80" Binding="{Binding id}"
                                                 Header="ID" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="*" Binding="{Binding level}"
                                                 Header="Level" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="*" Binding="{Binding equipped}"
+                                                Header="Equipped" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -226,25 +231,28 @@
                         VerticalAlignment="Top" Height="307" Width="417" CanUserAddRows="False"
                         AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding armors}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding index}"
                                                 Header="Index" IsReadOnly="True"/>
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                                 Width="40" Binding="{Binding type}"
                                                 Header="Type" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="40" Binding="{Binding id}"
                                 Header="ID" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
+                                                Width="60" Binding="{Binding equipped}"
+                                                Header="Equipped" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="40" Binding="{Binding level}"
                                 Header="Level" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="*" Binding="{Binding unknown_14h}"
-                                Header="Color1 (RGB)" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Header="Color1" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="*" Binding="{Binding unknown_18h}"
-                                Header="Color2 (RGB)" />
-                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="False"
+                                Header="Color2" />
+                            <DataGridTextColumn CanUserReorder="False" CanUserResize="False" CanUserSort="True"
                                 Width="*" Binding="{Binding unknown_1ch}"
                                 Header="0x1Ch" />
                         </DataGrid.Columns>
@@ -258,7 +266,7 @@
                 VerticalAlignment="Top" Width="74" Click="button_load_click" />
         <Button x:Name="button_about" Content="About" HorizontalAlignment="Left" Margin="379,10,0,0" VerticalAlignment="Top" Width="74" Click="button_about_Click"/>
         <Label x:Name="label_save_ver_cap" Content="Save Version:" HorizontalAlignment="Left" Margin="164,7,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_save_ver" Content="JPN" HorizontalAlignment="Left" Margin="235,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,0.519" FontWeight="Bold"/>
+        <Label x:Name="label_save_ver" Content="No save loaded" HorizontalAlignment="Left" Margin="235,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,0.519" FontWeight="Bold"/>
     </Grid>
 </Window>
 

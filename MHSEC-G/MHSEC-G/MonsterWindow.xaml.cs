@@ -34,29 +34,73 @@ namespace MHSEC_G
                 byte[] buffer = File.ReadAllBytes(dialog.FileName);
                 if (buffer.Length != Offsets.SIZE_MONSTER)
                 {
+                    buffer = convert_monster(buffer);
+                    if (buffer.Length != Offsets.SIZE_MONSTER)
+                    {
+                        // failed again
+                        System.Windows.Forms.MessageBox.Show(
+                            "Wrong monster file size!",
+                            "MHSEC-G",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+
                     System.Windows.Forms.MessageBox.Show(
-                        "Wrong monster file size!",
-                        "Error",
+                        "Detected " + (Offsets.VER == Offsets.Version.JPN ? "USA" : "JPN") + " monster export format. Automatically converted.",
+                        "MHSEC-G",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                        MessageBoxIcon.Information);
                 }
-                else
-                {
-                    _monster.setByteArray(buffer);
-                }
+
+                _monster.setByteArray(buffer);
             }
         }
 
-        private void button_mdelete_Click(object sender, RoutedEventArgs e)
+        private static byte[] convert_monster(byte[] save)
         {
-            MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete the monster?", "MHSEC-G", MessageBoxButton.YesNo);
-            if (confirm == MessageBoxResult.Yes)
+            byte[] ret = null;
+            if (Offsets.VER == Offsets.Version.JPN)
             {
-                _monster.setByteArray(Offsets.MONSTER_NULL_TEMPLATE);
+                uint other_offset_uid = Offsets.OFFSETR_MONSTER_UID + 0x28;
+
+                // USA -> JPN
+                if (save.Length < other_offset_uid)
+                {
+                    return ret;
+                }
+
+                ret = new byte[save.Length - 0x28];
+                // copy everything till my UID
+                Array.Copy(save, 0, ret, 0, Offsets.OFFSETR_MONSTER_UID);
+                // copy everything after it 
+                Array.Copy(save, other_offset_uid, ret, Offsets.OFFSETR_MONSTER_UID,
+                    save.Length - other_offset_uid);
             }
+            else
+            {
+                uint other_offset_uid = Offsets.OFFSETR_MONSTER_UID - 0x28;
+
+                // JPN -> USA
+                if (save.Length < other_offset_uid)
+                {
+                    return ret;
+                }
+
+                ret = new byte[save.Length + 0x28];
+                // copy everything till other uid
+                Array.Copy(save, 0, ret, 0, other_offset_uid);
+                // fill 0s
+                Array.Clear(ret, (int) (other_offset_uid), 0x28);
+                // copy everything else
+                Array.Copy(save, other_offset_uid, ret, Offsets.OFFSETR_MONSTER_UID,
+                    save.Length - other_offset_uid);
+            }
+
+            return ret;
         }
 
-        private void button_mdel_Click(object sender, RoutedEventArgs e)
+        private void button_mexport_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = "Binary files (*.bin)|*.bin|All files (*.*)|*.*";
@@ -68,6 +112,16 @@ namespace MHSEC_G
                 File.WriteAllBytes(dialog.FileName, binary);
                 MessageBox.Show("Exported to \"" + dialog.FileName + "\"", "MHSEC-G", MessageBoxButton.OK,
                     MessageBoxImage.Information);
+            }
+        }
+
+        private void button_mdelete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete the monster?", "MHSEC-G",
+                MessageBoxButton.YesNo);
+            if (confirm == MessageBoxResult.Yes)
+            {
+                _monster.setByteArray(Offsets.MONSTER_NULL_TEMPLATE);
             }
         }
 

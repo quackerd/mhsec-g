@@ -88,17 +88,17 @@ namespace MHSEC_G
         {
             if (length < str.Length || arr.Length < offset + length)
             {
-                BugCheck.bug_check(BugCheck.ErrorCode.MODEL_WRITE_UNICODE_OVERFLOW, "Buffer overflowed.\nBound " + arr.Length + " Offset " + offset);
+                BugCheck.bug_check(BugCheck.ErrorCode.MODEL_WRITE_UNICODE_OVERFLOW,
+                    "Buffer overflowed.\nBound " + arr.Length + " Offset " + offset);
             }
 
-            Array.Clear(arr, (int) offset, (int)length*2);
-            for (uint i = 0; i < str.Length; i ++)
+            Array.Clear(arr, (int) offset, (int) length * 2);
+            for (uint i = 0; i < str.Length; i++)
             {
-                write_uint16_le(arr, offset + i*2, str.ElementAt((int) i));
+                write_uint16_le(arr, offset + i * 2, str.ElementAt((int) i));
             }
             return;
         }
-
 
         public static bool parse_hex_string(string val, out uint result)
         {

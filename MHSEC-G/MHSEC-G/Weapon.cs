@@ -35,6 +35,24 @@ namespace MHSEC_G
             }
         }
 
+        public string equipped
+        {
+            get { return Helper.byte_to_uint(_data[_obj_offset + Offsets.OFFSETR_WEAPON_EQUIPPED]).ToString("X2"); }
+            set
+            {
+                uint parsed;
+                if (Helper.parse_hex_string(value, out parsed) && parsed <= 0xFF)
+                {
+                    Helper.write_byte(_data, _obj_offset + Offsets.OFFSETR_WEAPON_EQUIPPED, parsed);
+                }
+                else
+                {
+                    MessageBox.Show("Malformed Equipped value - must be at most 0xFF", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                OnPropertyChanged(nameof(equipped));
+            }
+        }
+
         public string id
         {
             set

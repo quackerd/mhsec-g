@@ -10,6 +10,18 @@ namespace MHSEC_G
     public static class Offsets
     {
         //
+        // Ver
+        //
+        public enum Version
+        {
+            JPN,
+            USA
+        };
+
+        private static Version _VER;
+        public static Version VER => _VER;
+
+        //
         // Save
         //
         public const uint SAVE_FILE_SIZE_JPN = 483976;
@@ -26,6 +38,10 @@ namespace MHSEC_G
         //
         // Armors
         //
+
+        private static uint _OFFSETR_ARM_EQUIPPED;
+        public static uint OFFSETR_ARM_EQUIPPED => _OFFSETR_ARM_EQUIPPED;
+
         private static uint _OFFSETA_ARM;
         public static uint OFFSETA_ARM => _OFFSETA_ARM;
 
@@ -283,8 +299,8 @@ namespace MHSEC_G
         private static uint _OFFSETR_TALI_ID;
         public static uint OFFSETR_TALI_ID => _OFFSETR_TALI_ID;
 
-        private static uint _OFFSETR_EQUIPPED;
-        public static uint OFFSETR_EQUIPPED => _OFFSETR_EQUIPPED;
+        private static uint _OFFSETR_TALI_EQUIPPED;
+        public static uint OFFSETR_TALI_EQUIPPED => _OFFSETR_TALI_EQUIPPED;
 
 
         //
@@ -292,6 +308,9 @@ namespace MHSEC_G
         //
         private static uint _OFFSETA_WEAPON_START;
         public static uint OFFSETA_WEAPON_START => _OFFSETA_WEAPON_START;
+
+        private static uint _OFFSETR_WEAPON_EQUIPPED;
+        public static uint OFFSETR_WEAPON_EQUIPPED => _OFFSETR_WEAPON_EQUIPPED;
 
         private static uint _OFFSETA_WEAPON_END;
         public static uint OFFSETA_WEAPON_END => _OFFSETA_WEAPON_END;
@@ -313,6 +332,8 @@ namespace MHSEC_G
         {
             if (save.Length == SAVE_FILE_SIZE_JPN)
             {
+                _VER = Version.JPN;
+       
                 //
                 //Armors
                 //
@@ -325,6 +346,7 @@ namespace MHSEC_G
                 _OFFSETR_ARM_1C = 0x1c;
                 _OFFSETA_ARM_END = 0x720E;
                 _OFFSETR_ARM_TYPE = 0x0;
+                _OFFSETR_ARM_EQUIPPED = 0x11;
 
                 //
                 //Character
@@ -415,13 +437,14 @@ namespace MHSEC_G
                 _OFFSETR_TALI_SKILL1 = 0x28;
                 _OFFSETR_TALI_SKILL2 = 0x2A;
                 _OFFSETR_TALI_ID = 0x2;
-                _OFFSETR_EQUIPPED = 0x11;
+                _OFFSETR_TALI_EQUIPPED = 0x11;
 
                 //
                 //Weapons
                 //
                 _OFFSETA_WEAPON_START = 0x39D0;
                 _OFFSETA_WEAPON_END = 0x55EF;
+                _OFFSETR_WEAPON_EQUIPPED = 0x11;
                 _SIZE_WEAPON = 0x24;
                 _OFFSETR_CLASS = 0x0;
                 _OFFSETR_ID = 0x2;
@@ -432,6 +455,7 @@ namespace MHSEC_G
             }
             else
             {
+                _VER = Version.USA;
                 //
                 // Armors ok
                 //
@@ -444,6 +468,7 @@ namespace MHSEC_G
                 _OFFSETR_ARM_1C = 0x1c;
                 _OFFSETA_ARM_END = 0x72B3;
                 _OFFSETR_ARM_TYPE = 0x0;
+                _OFFSETR_ARM_EQUIPPED = 0x11;
 
                 //
                 // Character ok
@@ -535,13 +560,14 @@ namespace MHSEC_G
                 _OFFSETR_TALI_SKILL1 = 0x28;
                 _OFFSETR_TALI_SKILL2 = 0x2A;
                 _OFFSETR_TALI_ID = 0x2;
-                _OFFSETR_EQUIPPED = 0x11;
+                _OFFSETR_TALI_EQUIPPED = 0x11;
 
                 //
                 // Weapons ok
                 //
                 _OFFSETA_WEAPON_START = 0x3A74;
                 _OFFSETA_WEAPON_END = 0x5693;
+                _OFFSETR_WEAPON_EQUIPPED = 0x11;
                 _SIZE_WEAPON = 0x24;
                 _OFFSETR_CLASS = 0x0;
                 _OFFSETR_ID = 0x2;

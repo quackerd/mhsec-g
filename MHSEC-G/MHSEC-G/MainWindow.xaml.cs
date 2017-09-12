@@ -29,9 +29,9 @@ namespace MHSEC_G
             button_save.IsEnabled = false;
             byte[] dummy = new byte[Offsets.SAVE_FILE_SIZE_JPN];
             Array.Clear(dummy, 0, dummy.Length);
-            this.Title = "MHSEC-G Ver " + get_app_version();
             Offsets.init(dummy);
             init(dummy);
+            this.Title = "MHSEC-G Ver " + get_app_version();
             DataContext = this;
         }
 
@@ -53,7 +53,8 @@ namespace MHSEC_G
                 }
                 else
                 {
-                    if (buffer.Length == Offsets.SAVE_FILE_SIZE_JPN)
+                    Offsets.init(buffer);
+                    if (Offsets.VER == Offsets.Version.JPN)
                     {
                         label_save_ver.Content = "JPN";
                     }
@@ -61,7 +62,6 @@ namespace MHSEC_G
                     {
                         label_save_ver.Content = "EUR/USA";
                     }
-                    Offsets.init(buffer);
                     init(buffer);
                     OnPropertyChanged(null);
                     button_save.IsEnabled = true;
@@ -238,5 +238,61 @@ namespace MHSEC_G
             PartyWindow partyWnd = new PartyWindow(_model);
             partyWnd.Show();
         }
+
+        private void button_eggs_export_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.egg_grid.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an egg.", "MHSEC-G", MessageBoxButton.OK);
+            }
+            else
+            {
+                Egg theEgg = egg_grid.SelectedItem as Egg;
+                SaveFileDialog dialog = new SaveFileDialog();
+
+                dialog.Filter = "Binary files (*.bin)|*.bin|All files (*.*)|*.*";
+                dialog.Title = "Please select the export location.";
+                dialog.FileName = "egg_" + theEgg.spe + ".bin";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    byte[] binary = theEgg.toByteArray();
+                    File.WriteAllBytes(dialog.FileName, binary);
+                    MessageBox.Show("Exported to \"" + dialog.FileName + "\"", "MHSEC-G", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+            }
+        }
+
+        private void button_eggs_import_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.egg_grid.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an egg.", "MHSEC-G", MessageBoxButton.OK);
+            }
+            else
+            {
+                Egg theEgg = egg_grid.SelectedItem as Egg;
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Binary files (*.bin)|*.bin|All files (*.*)|*.*";
+                dialog.Title = "Please select the monster file.";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    byte[] buffer = File.ReadAllBytes(dialog.FileName);
+                    if (buffer.Length != Offsets.SIZE_EGG)
+                    {
+                        System.Windows.Forms.MessageBox.Show(
+                            "Wrong egg file size!",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        theEgg.setByteArray(buffer);
+                    }
+                }
+            }
+        }
+       
     }
 }
