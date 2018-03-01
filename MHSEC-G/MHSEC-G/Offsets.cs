@@ -451,7 +451,7 @@ namespace MHSEC_G
                 _OFFSETR_LEVEL = 0x4;
 
                 read_item_mappings(Properties.Resources.idmap);
-                read_gene_mapping(Properties.Resources.gene);
+                read_gene_mapping(Properties.Resources.gene_JPN);
             }
             else
             {

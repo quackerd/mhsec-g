@@ -139,4 +139,7 @@
   <data name="monster_null_template_NA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\monster_null_template_NA.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gene_JPN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gene_JPN.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

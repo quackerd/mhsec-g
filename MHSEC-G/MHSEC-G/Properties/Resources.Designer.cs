@@ -19,7 +19,7 @@ namespace MHSEC_G.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -83,6 +83,39 @@ namespace MHSEC_G.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 0001	Empty Slot
         ///0002	Locked Slot
+        ///0003	Aptonoth Gene
+        ///0004	Popo Gene
+        ///0005	Apceros Gene
+        ///0006	Yian Kut-Ku Gene
+        ///0007	B. Yian Kut-Kue Gene
+        ///0008	Gypceros Gene
+        ///0009	P. Gypceros Gene
+        ///000A	Yian Garuga Gene
+        ///000B	Arzuros Gene
+        ///000C	Lagombi Gene
+        ///000D	Velocidrome Gene
+        ///000E	Iodrome Gene
+        ///000F	Gendrome Gene
+        ///0010	Bulldrome Gene
+        ///0011	Zamtrios Gene
+        ///0012	Khezu Gene
+        ///0013	Red Khezu Gene
+        ///0014	Tigrex Gene
+        ///0015	Brute Tigrex Gene
+        ///0016	Nargacuga Gene
+        ///0017	G. Nargacuga Gene
+        ///0018	Rathian Gene
+        ///0019	Pink Rathian Gen [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string gene {
+            get {
+                return ResourceManager.GetString("gene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0001	Empty Slot
+        ///0002	Locked Slot
         ///0003	アプトノス遺伝子
         ///0004	ポポ遺伝子
         ///0005	アプケロス遺伝子
@@ -120,9 +153,9 @@ namespace MHSEC_G.Properties {
         ///0025	鎧竜遺伝子
         ///0026	黒鎧竜遺伝 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string gene {
+        internal static string gene_JPN {
             get {
-                return ResourceManager.GetString("gene", resourceCulture);
+                return ResourceManager.GetString("gene_JPN", resourceCulture);
             }
         }
         
